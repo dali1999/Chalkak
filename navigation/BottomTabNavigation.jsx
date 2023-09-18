@@ -17,7 +17,7 @@ const screenOptions = {
     right: 0,
     left: 0,
     elevation: 0,
-    height: 70,
+    height: 60,
   },
 };
 
@@ -32,8 +32,8 @@ const BottomTabNavigation = () => {
             return (
               <Ionicons
                 name={focused ? "home" : "home-outline"}
-                size={24}
-                color={focused ? COLORS.primary : COLORS.gray2}
+                size={26}
+                color={focused ? COLORS.purple : COLORS.gray2}
               />
             );
           },
@@ -47,8 +47,8 @@ const BottomTabNavigation = () => {
             return (
               <Ionicons
                 name={"search-sharp"}
-                size={24}
-                color={focused ? COLORS.primary : COLORS.gray2}
+                size={26}
+                color={focused ? COLORS.purple : COLORS.gray2}
               />
             );
           },
@@ -66,8 +66,8 @@ const BottomTabNavigation = () => {
                     ? "chatbubble-ellipses"
                     : "chatbubble-ellipses-outline"
                 }
-                size={24}
-                color={focused ? COLORS.primary : COLORS.gray2}
+                size={26}
+                color={focused ? COLORS.purple : COLORS.gray2}
               />
             );
           },
@@ -81,8 +81,8 @@ const BottomTabNavigation = () => {
             return (
               <Ionicons
                 name={focused ? "images" : "images-outline"}
-                size={24}
-                color={focused ? COLORS.primary : COLORS.gray2}
+                size={26}
+                color={focused ? COLORS.purple : COLORS.gray2}
               />
             );
           },
@@ -96,8 +96,8 @@ const BottomTabNavigation = () => {
             return (
               <Ionicons
                 name={focused ? "person" : "person-outline"}
-                size={24}
-                color={focused ? COLORS.primary : COLORS.gray2}
+                size={26}
+                color={focused ? COLORS.purple : COLORS.gray2}
               />
             );
           },
