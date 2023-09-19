@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   logo: {
     fontFamily: "extrabold",
     fontSize: SIZES.xLarge,
-    color: COLORS.purple,
+    color: COLORS.gray,
   },
 });
 
