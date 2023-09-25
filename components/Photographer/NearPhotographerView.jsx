@@ -8,7 +8,7 @@ export default function NearPhotographerView() {
       <View style={styles.profileContainer}>
         <View style={styles.profileImgContainer}>
           <Image
-            source={require("../assets/갱수댕댕이.png")}
+            source={require("../../assets/갱수댕댕이.png")}
             style={styles.profileImg}
           />
         </View>

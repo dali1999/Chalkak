@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from "../constants";
-
+import { COLORS, SIZES } from "../../constants";
 const styles = StyleSheet.create({
-  nearViewWrapper: {
+  recentViewWrapper: {
     backgroundColor: COLORS.offwhite,
     width: "93%",
-    height: 70,
+    height: 120,
     borderRadius: SIZES.small,
     justifyContent: "center",
     alignItems: "center",
@@ -24,9 +23,27 @@ const styles = StyleSheet.create({
   },
   profileImg: {
     borderRadius: 999,
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 70,
     resizeMode: "cover",
   },
+
+  profileInfoWrapper: {},
+  profileInfo: {
+    marginTop: 10,
+  },
+
+  profileInfoRow: {
+    flexDirection: "row",
+    gap: 10,
+  },
+
+  //   profileRightImg: {
+  //     borderBottomRightRadius: SIZES.small,
+  //     borderTopRightRadius: SIZES.small,
+  //     width: 101,
+  //     height: 120,
+  //     resizeMode: "cover",
+  //   },
 });
 export default styles;

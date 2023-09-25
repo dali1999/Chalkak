@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SIZES } from "../../constants";
 import styles from "./nearPhotographer.style";
-import NearPhotographerView from "../../Photographer/NearPhotographerView";
+import NearPhotographerView from "../Photographer/NearPhotographerView";
 
 export default function NearPhotographer() {
   return (
