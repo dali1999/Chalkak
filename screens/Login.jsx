@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
     ]);
   };
 
-  const login = console.log("LOGGED IN PRESSED");
+  const login = (values) => console.log("LOGGED IN PRESSED");
   return (
     <View style={styles.container}>
       <View style={{ flex: 0.5, backgroundColor: COLORS.primary }} />
