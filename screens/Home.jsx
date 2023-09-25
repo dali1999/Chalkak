@@ -27,7 +27,7 @@ export default function Home() {
         </View>
       </View>
 
-      <ScrollView style={{ height: "100%" }}>
+      <ScrollView style={{ height: "87%" }}>
         <Category />
         <NearPhotographer />
         <RecentPhotographer />
