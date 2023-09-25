@@ -11,42 +11,47 @@ const styles = StyleSheet.create({
     flex: 1.3,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: COLORS.gray2,
-    paddingBottom: 50,
   },
   logo: {
     color: COLORS.primary,
     fontFamily: "extrabold",
     fontSize: SIZES.xxLarge + 50,
   },
-  btnArea: {
-    height: 10,
-    flex: 0.5,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: 15,
+
+  wrapper: {
+    marginBottom: 20,
+    // marginHorizontal: 30,
   },
-  btnText: (color) => ({
-    fontSize: SIZES.large + 3,
-    fontFamily: "bold",
-    color: color,
-  }),
-  btnLogin: {
-    flex: 1,
-    width: SIZES.width / 1.5,
-    borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: COLORS.primary,
+  label: {
+    fontFamily: "regular",
+    fontSize: SIZES.xSmall,
+    marginBottom: 5,
+    marginEnd: 5,
+    textAlign: "right",
   },
-  btnRegister: {
-    flex: 1,
-    width: SIZES.width / 1.5,
-    borderRadius: 15,
+  inputWrapper: (borderColor) => ({
+    borderColor: borderColor,
+    backgroundColor: COLORS.lightWhite,
     borderWidth: 1,
-    justifyContent: "center",
+    height: 50,
+    borderRadius: 12,
+    flexDirection: "row",
+    paddingHorizontal: 15,
     alignItems: "center",
-    backgroundColor: "white",
+  }),
+  iconStyle: {
+    marginRight: 10,
+  },
+  errorMessage: {
+    color: COLORS.red,
+    fontFamily: "regular",
+    marginTop: 5,
+    marginLeft: 5,
+    fontSize: SIZES.xSmall,
+  },
+  registration: {
+    marginTop: 10,
+    textAlign: "center",
   },
 });
 
