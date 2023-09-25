@@ -33,7 +33,7 @@ const BottomTabNavigation = () => {
               <Ionicons
                 name={focused ? "home" : "home-outline"}
                 size={26}
-                color={focused ? COLORS.purple : COLORS.gray2}
+                color={focused ? COLORS.primary : COLORS.gray2}
               />
             );
           },
@@ -48,7 +48,7 @@ const BottomTabNavigation = () => {
               <Ionicons
                 name={"search-sharp"}
                 size={26}
-                color={focused ? COLORS.purple : COLORS.gray2}
+                color={focused ? COLORS.primary : COLORS.gray2}
               />
             );
           },
@@ -67,7 +67,7 @@ const BottomTabNavigation = () => {
                     : "chatbubble-ellipses-outline"
                 }
                 size={26}
-                color={focused ? COLORS.purple : COLORS.gray2}
+                color={focused ? COLORS.primary : COLORS.gray2}
               />
             );
           },
@@ -82,7 +82,7 @@ const BottomTabNavigation = () => {
               <Ionicons
                 name={focused ? "images" : "images-outline"}
                 size={26}
-                color={focused ? COLORS.purple : COLORS.gray2}
+                color={focused ? COLORS.primary : COLORS.gray2}
               />
             );
           },
@@ -97,7 +97,7 @@ const BottomTabNavigation = () => {
               <Ionicons
                 name={focused ? "person" : "person-outline"}
                 size={26}
-                color={focused ? COLORS.purple : COLORS.gray2}
+                color={focused ? COLORS.primary : COLORS.gray2}
               />
             );
           },

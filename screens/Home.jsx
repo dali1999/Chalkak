@@ -15,7 +15,7 @@ export default function Home() {
     <SafeAreaView>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
-          <Text style={{ ...styles.logo, color: COLORS.purple }}>찰칵</Text>
+          <Text style={{ ...styles.logo, color: COLORS.primary }}>찰칵</Text>
 
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Ionicons
@@ -27,7 +27,7 @@ export default function Home() {
         </View>
       </View>
 
-      <ScrollView>
+      <ScrollView style={{ height: "100%" }}>
         <Category />
         <NearPhotographer />
         <RecentPhotographer />
