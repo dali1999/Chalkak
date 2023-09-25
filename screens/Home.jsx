@@ -8,24 +8,12 @@ import { useNavigation } from "@react-navigation/native";
 import Category from "../components/home/Category";
 import NearPhotographer from "../components/home/NearPhotographer";
 import RecentPhotographer from "../components/home/RecentPhotographer";
+import AppBar from "../components/AppBar/AppBar";
 
 export default function Home() {
-  const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <View style={styles.appBarWrapper}>
-        <View style={styles.appBar}>
-          <Text style={{ ...styles.logo, color: COLORS.primary }}>찰칵</Text>
-
-          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-            <Ionicons
-              name="person-circle-outline"
-              size={35}
-              color={COLORS.gray}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <AppBar title={"찰칵"} color={COLORS.primary} />
 
       <ScrollView style={{ height: "87%" }}>
         <Category />
