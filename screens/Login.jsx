@@ -52,7 +52,7 @@ export default function Login({ navigation }) {
     try {
       //맥 192.168.0.5
       //윈도우 192.168.55.136
-      const endpoint = "http://192.168.55.136:3000/api/login";
+      const endpoint = "https://7d54-175-117-199-226.ngrok-free.app/api/login";
       const data = values;
 
       const response = await axios.post(endpoint, data);
