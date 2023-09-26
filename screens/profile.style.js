@@ -55,17 +55,25 @@ const styles = StyleSheet.create({
     gap: 10,
   },
 
-  logoutWrapper: {
-    alignItems: "center",
-  },
   logout: {
     flexDirection: "row",
+    gap: 10,
+    position: "absolute",
+    left: SIZES.width / 2 - 60,
+    bottom: 100,
     backgroundColor: COLORS.primary,
-    borderRadius: 20,
-    width: 100,
-    height: 40,
+    borderRadius: SIZES.small,
+    width: 120,
+    height: 70,
     justifyContent: "center",
     alignItems: "center",
+  },
+  logText: {
+    position: "absolute",
+    top: 15,
+    color: COLORS.lightWhite,
+    fontFamily: "bold",
+    fontSize: SIZES.large,
   },
 });
 

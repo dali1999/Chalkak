@@ -44,11 +44,13 @@ export default function Profile({ navigation }) {
     const useId = `user${JSON.parse(id)}`;
     try {
       await AsyncStorage.multiRemove([useId, "id"]);
+      console.log("Hello");
       navigation.replace("Bottom Navigation");
     } catch (error) {
       console.log("Error loggin out the user:", error);
     }
   };
+
   const logout = () => {
     Alert.alert("Logout", "Are you sure you want to logout", [
       {
@@ -70,12 +72,14 @@ export default function Profile({ navigation }) {
         {userLogin === false ? (
           <View style={styles.container}>
             <TouchableOpacity
-              style={styles.loginBtn}
-              onPress={() => {
+              style={styles.logout}
+              onPress={(event) => {
+                console.log(event);
                 navigation.navigate("Login");
               }}
             >
-              <Text>L O G I N</Text>
+              {/* <AntDesign name="logout" color={COLORS.primary} size={24} /> */}
+              <Text style={styles.logText}>로 그 인</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -122,14 +126,14 @@ export default function Profile({ navigation }) {
                 </View>
               </View>
             </View>
-            <View style={styles.logoutWrapper}>
-              <TouchableOpacity onPress={() => logout()}>
-                <View style={styles.logout}>
-                  {/* <AntDesign name="logout" color={COLORS.primary} size={24} /> */}
-                  <Text style={styles.menuText}>Logout</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+
+            <TouchableOpacity
+              style={styles.logout}
+              onPress={() => userLogout()}
+            >
+              <AntDesign name="logout" color={COLORS.offwhite} size={20} />
+              <Text style={styles.logText}>로그아웃</Text>
+            </TouchableOpacity>
           </View>
         )}
       </View>
