@@ -17,7 +17,7 @@ export default function Profile({ navigation }) {
             navigation.navigate("Login");
           }}
         >
-          <Text>LOGIN</Text>
+          <Text>L O G I N</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
