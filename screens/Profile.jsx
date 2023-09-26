@@ -131,7 +131,7 @@ export default function Profile({ navigation }) {
               style={styles.logout}
               onPress={() => userLogout()}
             >
-              <AntDesign name="logout" color={COLORS.offwhite} size={20} />
+              {/* <AntDesign name="logout" color={COLORS.offwhite} size={20} /> */}
               <Text style={styles.logText}>로그아웃</Text>
             </TouchableOpacity>
           </View>
