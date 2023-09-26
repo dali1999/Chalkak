@@ -36,8 +36,13 @@ export default function AppBar({ title, color }) {
     <View style={styles.appBarWrapper}>
       <View style={styles.appBar}>
         <Text style={styles.logo(color)}>{title}</Text>
-        <Text>{userData ? userData.username : "유저이름"}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+        <TouchableOpacity
+          style={styles.profile}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Text style={styles.profileText}>
+            {userData ? userData.username : "로그인이 필요합니다"}
+          </Text>
           <Ionicons
             name="person-circle-outline"
             size={35}

@@ -3,34 +3,22 @@ import { COLORS, SIZES } from "../constants";
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "space-around",
-    // alignItems: "center",
     height: SIZES.height,
   },
-  loginBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: COLORS.primary,
-    width: 100,
-    height: 50,
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-  profileContainer: {
-    // borderWidth: 1,
-    flexDirection: "row",
-    gap: 40,
-  },
+
   profileWrapper: {
     height: 150,
     paddingVertical: 10,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: COLORS.primary2,
     margin: SIZES.medium,
     borderRadius: SIZES.small,
     borderWidth: 1,
     borderColor: COLORS.gray2,
+  },
+  profileContainer: {
+    flexDirection: "row",
+    gap: 40,
   },
   profileImgContainer: {
     borderRadius: 999,

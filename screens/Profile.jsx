@@ -73,8 +73,7 @@ export default function Profile({ navigation }) {
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.logout}
-              onPress={(event) => {
-                console.log(event);
+              onPress={() => {
                 navigation.navigate("Login");
               }}
             >

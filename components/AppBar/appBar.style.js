@@ -19,7 +19,19 @@ const styles = StyleSheet.create({
     fontFamily: "extrabold",
     fontSize: SIZES.xLarge,
     color: color,
+    // borderWidth: 1,
+    width: 104,
   }),
+  profile: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+  },
+  profileText: {
+    textAlign: "right",
+    color: COLORS.gray,
+    fontSize: SIZES.medium,
+  },
 });
 
 export default styles;
