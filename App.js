@@ -4,13 +4,36 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
-import { Login, SignUp } from "./screens";
+import { Login, Profile, SignUp } from "./screens";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [userData, setUserData] = useState(null);
+  const [userLogin, setUserLogin] = useState(false);
+  useEffect(() => {
+    checkExistingUser();
+  }, []);
+
+  const checkExistingUser = async () => {
+    const id = await AsyncStorage.getItem("id");
+    const useId = `user${JSON.parse(id)}`;
+
+    try {
+      const currentUser = await AsyncStorage.getItem(useId);
+
+      if (currentUser !== null) {
+        const parsedData = JSON.parse(currentUser);
+        setUserData(parsedData);
+        setUserLogin(true);
+      }
+    } catch (error) {
+      console.log("Error retrieving the data:", error);
+    }
+  };
   const [fontsLoaded] = useFonts({
     regular: require("./assets/fonts/Poppins-Regular.ttf"),
     light: require("./assets/fonts/Poppins-Light.ttf"),
@@ -45,6 +68,11 @@ export default function App() {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

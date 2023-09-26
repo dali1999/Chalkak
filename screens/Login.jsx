@@ -141,7 +141,7 @@ export default function Login({ navigation }) {
                     style={styles.iconStyle}
                   />
                   <TextInput
-                    placeholder="이메일을 입력하세요"
+                    placeholder="이메일"
                     onFocus={() => {
                       setFieldTouched("email");
                     }}
@@ -159,6 +159,7 @@ export default function Login({ navigation }) {
                   <Text style={styles.errorMessage}>{errors.email}</Text>
                 )}
               </View>
+
               {/* password================================================== */}
               <View style={styles.wrapper}>
                 {/* <Text style={styles.label}>Password</Text> */}
@@ -175,7 +176,7 @@ export default function Login({ navigation }) {
                   />
                   <TextInput
                     secureTextEntry={obsecureText}
-                    placeholder="Password"
+                    placeholder="비밀번호"
                     onFocus={() => {
                       setFieldTouched("password");
                     }}
@@ -204,6 +205,7 @@ export default function Login({ navigation }) {
                   <Text style={styles.errorMessage}>{errors.password}</Text>
                 )}
               </View>
+
               {/* 로그인버튼================================================== */}
               <Button
                 loader={loader}
