@@ -62,8 +62,8 @@ export default function Category() {
       icon: "color-wand-outline",
     },
   ];
-  const Item = ({ icon, title }) => (
-    <TouchableOpacity style={styles.category}>
+  const Item = ({ icon, title, onPress }) => (
+    <TouchableOpacity style={styles.category} onPress={onPress}>
       <Ionicons name={icon} size={SIZES.large} />
       <Text style={styles.categoryText}>{title}</Text>
     </TouchableOpacity>

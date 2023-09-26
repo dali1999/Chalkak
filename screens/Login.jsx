@@ -50,9 +50,9 @@ export default function Login({ navigation }) {
   const login = async (values) => {
     setLoader(true);
     try {
-      //맥:119.66.185.75
-      //192.168.0.5
-      const endpoint = "http://192.168.0.5:3000/api/login";
+      //맥 192.168.0.5
+      //윈도우 192.168.55.136
+      const endpoint = "http://192.168.55.136:3000/api/login";
       const data = values;
 
       const response = await axios.post(endpoint, data);
