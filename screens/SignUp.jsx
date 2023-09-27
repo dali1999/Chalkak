@@ -65,7 +65,6 @@ export default function Login({ navigation }) {
       const response = await axios.post(endpoint, data);
       if (response.status === 201) {
         navigation.replace("Login");
-        console.log(data);
       }
     } catch (error) {
       console.log(error);

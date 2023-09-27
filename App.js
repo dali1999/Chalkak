@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
@@ -8,6 +8,13 @@ import { useCallback, useEffect, useState } from "react";
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import { Login, Profile, SignUp } from "./screens";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+//Text 적용
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
+//TextInput 적용
+TextInput.defaultProps = TextInput.defaultProps || {};
+TextInput.defaultProps.allowFontScaling = false;
 
 const Stack = createNativeStackNavigator();
 

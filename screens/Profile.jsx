@@ -66,7 +66,7 @@ export default function Profile({ navigation }) {
 
   return (
     <SafeAreaView>
-      <AppBar title={"마이 페이지"} color={COLORS.gray} />
+      <AppBar title={"프로필"} color={COLORS.gray} />
 
       <View>
         {userLogin === false ? (
