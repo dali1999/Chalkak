@@ -58,8 +58,7 @@ export default function Login({ navigation }) {
   const registerUser = async (values) => {
     setLoader(true);
     try {
-      const endpoint =
-        "http://29c3-175-117-199-226.ngrok-free.app/api/register";
+      const endpoint = "https://27bd-124-56-169-14.ngrok-free.app/api/register";
       const data = values;
 
       const response = await axios.post(endpoint, data);

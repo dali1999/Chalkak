@@ -13,7 +13,7 @@ export default function useFetch() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://29c3-175-117-199-226.ngrok-free.app/api/users/`
+        `https://27bd-124-56-169-14.ngrok-free.app/api/users/`
       );
       setData(response.data);
       setIsLoading(false);
