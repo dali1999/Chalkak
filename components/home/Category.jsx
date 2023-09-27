@@ -60,14 +60,21 @@ export default function Category() {
     {
       title: "컨셉",
       icon: "color-wand-outline",
+      // onPress: console.log(title),
     },
   ];
-  const Item = ({ icon, title, onPress }) => (
-    <TouchableOpacity style={styles.category} onPress={onPress}>
+  // const onPress = () => {};
+
+  const Item = ({ icon, title }) => (
+    <TouchableOpacity
+      style={styles.category}
+      onPress={() => console.log(title)}
+    >
       <Ionicons name={icon} size={SIZES.large} />
       <Text style={styles.categoryText}>{title}</Text>
     </TouchableOpacity>
   );
+
   return (
     <View style={styles.categoryWrapper}>
       <ScrollView

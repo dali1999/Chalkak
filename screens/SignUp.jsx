@@ -9,6 +9,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import styles from "./login.style";
@@ -64,6 +65,7 @@ export default function Login({ navigation }) {
       const response = await axios.post(endpoint, data);
       if (response.status === 201) {
         navigation.replace("Login");
+        console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -86,6 +88,7 @@ export default function Login({ navigation }) {
             password: "",
             location: "",
             username: "",
+            role: "user",
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => registerUser(values)}
@@ -99,6 +102,7 @@ export default function Login({ navigation }) {
             errors,
             isValid,
             setFieldTouched,
+            setFieldValue,
           }) => (
             <View>
               {/* username ==========================================*/}
@@ -247,6 +251,29 @@ export default function Login({ navigation }) {
                 {touched.password && errors.password && (
                   <Text style={styles.errorMessage}>{errors.password}</Text>
                 )}
+              </View>
+
+              {/* role Picker================================================== */}
+              <View style={styles.wrapper}>
+                <Text style={styles.label}>Role</Text>
+                <View
+                  style={{
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderColor: COLORS.primary,
+                    padding: 2,
+                  }}
+                >
+                  <Picker
+                    selectedValue={values.role}
+                    onValueChange={(itemValue) =>
+                      setFieldValue("role", itemValue)
+                    }
+                  >
+                    <Picker.Item label="일반 사용자" value="user" />
+                    <Picker.Item label="사진 작가" value="photographer" />
+                  </Picker>
+                </View>
               </View>
 
               {/* 회원가입 버튼================================================== */}
