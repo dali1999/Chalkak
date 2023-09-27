@@ -19,6 +19,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NRROK_ADDRESS } from "../hook/config";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -59,7 +60,7 @@ export default function Login({ navigation }) {
   const registerUser = async (values) => {
     setLoader(true);
     try {
-      const endpoint = "https://27bd-124-56-169-14.ngrok-free.app/api/register";
+      const endpoint = `${NRROK_ADDRESS}/api/register`;
       const data = values;
 
       const response = await axios.post(endpoint, data);
