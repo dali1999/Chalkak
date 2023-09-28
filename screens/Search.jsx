@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  FlatList,
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,8 +16,12 @@ import { useNavigation } from "@react-navigation/native";
 import AppBar from "../components/AppBar/AppBar";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../hook/config";
+import RecentPhotographerView from "../components/Photographer/RecentPhotographerView";
+import useFetch from "../hook/useFetch";
 
 export default function Search() {
+  const { data, isLoading, error } = useFetch();
+
   const [searchKey, setSearchKey] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -63,9 +68,23 @@ export default function Search() {
       </View>
 
       {searchResults.length === 0 ? (
-        <View style={{ flex: 1 }}></View>
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => <RecentPhotographerView data={item} />}
+            vertical
+            contentContainerStyle={{ rowGap: SIZES.medium }}
+          />
+          {/* <RecentPhotographerView data={data}/> */}
+        </View>
       ) : (
-        <Text>123</Text>
+        <FlatList
+          data={searchResults}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => <RecentPhotographerView data={item} />}
+          style={{ marginHorizontal: 12 }}
+        />
       )}
     </SafeAreaView>
   );

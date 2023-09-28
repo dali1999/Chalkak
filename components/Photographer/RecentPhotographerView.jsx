@@ -18,7 +18,6 @@ export default function NearPhotographerView({ data }) {
     const randomIndex = Math.floor(Math.random() * data.length);
     const selectedRandomItem = data[randomIndex];
     setRandomItem(selectedRandomItem);
-    console.log(randomIndex);
   }, [data]);
 
   if (!randomItem) {
