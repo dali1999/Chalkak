@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity, View, Text, Image } from "react-native";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import styles from "./recentPhotographerView.style";
 import { COLORS } from "../../constants";
 
-export default function NearPhotographerView() {
+function getRandomImageURL() {
+  const randomNumber = Math.floor(Math.random() * 1000) + 1;
+  // Use the random number to create a unique image URL
+  return `https://source.unsplash.com/500x500?random=${randomNumber}`;
+}
+
+export default function NearPhotographerView({ data }) {
+  const [randomItem, setRandomItem] = useState(null);
+
+  useEffect(() => {
+    // Randomly select one item from the data array
+    const randomIndex = Math.floor(Math.random() * data.length);
+    const selectedRandomItem = data[randomIndex];
+    setRandomItem(selectedRandomItem);
+    console.log(randomIndex);
+  }, [data]);
+
+  if (!randomItem) {
+    // If no random item is selected yet, render nothing
+    return null;
+  }
+
   return (
     <TouchableOpacity style={styles.recentViewWrapper}>
       <View style={styles.profileContainer}>
         <View style={styles.profileImgContainer}>
           <Image
-            source={require("../../assets/갱수댕댕이.png")}
+            source={{ uri: getRandomImageURL() }}
             style={styles.profileImg}
           />
         </View>
 
         <View style={styles.profileInfoWrapper}>
-          <Text>김정현 작가</Text>
+          <Text>{randomItem.username}</Text>
           <View style={styles.profileInfo}>
             <View style={styles.profileInfoRow}>
               <Ionicons
@@ -30,7 +51,7 @@ export default function NearPhotographerView() {
             </View>
             <View style={styles.profileInfoRow}>
               <Ionicons name="location-outline" size={15} color={COLORS.gray} />
-              <Text>경기도 일산서구 외 21곳</Text>
+              <Text>{randomItem.location}</Text>
             </View>
             <View style={styles.profileInfoRow}>
               <Ionicons name="cash-outline" size={15} color={COLORS.gray} />

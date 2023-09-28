@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity, View, Text, Image } from "react-native";
 import { COLORS } from "../../constants";
 import styles from "./nearPhotographerView.style";
@@ -20,7 +20,10 @@ export default function NearPhotographerView({ item }) {
           />
         </View>
         <Text style={styles.username}>{item.username} </Text>
-        <Text style={{ color: COLORS.primary }}> {item.role === "user" ? ("유저"):("작가")}</Text>
+        <Text style={{ color: COLORS.primary }}>
+          {" "}
+          {item.role === "user" ? "유저" : "작가"}
+        </Text>
         <Text style={styles.location}>{item.location}</Text>
       </View>
     </TouchableOpacity>

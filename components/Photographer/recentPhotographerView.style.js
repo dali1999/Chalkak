@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    gap: 15,
+    gap: 35,
   },
   profileImgContainer: {
     borderRadius: 999,
