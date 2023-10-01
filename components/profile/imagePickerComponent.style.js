@@ -18,12 +18,10 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 
-  // imagesWrapper: {
-  //   // height: 800,
-  //   marginBottom: 150,
-  //   // borderWidth: 1,
-  //   borderColor: COLORS.gray2,
-  // },
+  imagesWrapper: {
+    borderTopWidth: 1,
+    borderColor: COLORS.gray2,
+  },
   image: {
     borderWidth: 2,
     borderColor: COLORS.offwhite,
