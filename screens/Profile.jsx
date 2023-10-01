@@ -84,6 +84,7 @@ export default function Profile({ navigation }) {
           </View>
         ) : (
           <View style={styles.container}>
+            {/* 프로필 ================================================ */}
             <View style={styles.profileWrapper}>
               <View style={styles.profileContainer}>
                 <TouchableOpacity
@@ -132,13 +133,8 @@ export default function Profile({ navigation }) {
               </View>
             </View>
 
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("UploadImg");
-              }}
-            >
-              <Text>이미지 업로드</Text>
-            </TouchableOpacity>
+            {/* 이미지 업로드 ==========================================*/}
+              <ImagePickerComponent />
 
             <TouchableOpacity
               style={styles.logout}

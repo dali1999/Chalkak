@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
 
   profileWrapper: {
     height: 150,
-    paddingVertical: 10,
     justifyContent: "center",
     alignItems: "center",
     margin: SIZES.medium,
@@ -32,15 +31,17 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: "cover",
   },
-
-  profileInfoWrapper: { borderWidth: 2 },
+  profileInfoWrapper: { borderWidth: 0 },
   profileInfo: {
     marginTop: 10,
   },
-
   profileInfoRow: {
     flexDirection: "row",
     gap: 10,
+  },
+
+  imagesWrapper: {
+    marginTop: 10,
   },
 
   logout: {

@@ -6,18 +6,45 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  FlatList,
 } from "react-native";
 import { Ionicons, Fontisto, AntDesign } from "@expo/vector-icons";
 import styles from "../../components/profile/imagePickerComponent.style";
 import localImage from "../../assets/갱수댕댕이.png";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../../hook/config";
+import { COLORS } from "../../constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ImagePickerComponent({ url }) {
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState([]);
+
+  useEffect(() => {
+    // 앱 시작 시 이미지 상태를 로드
+    loadImagesFromStorage();
+  }, []);
+
+  const loadImagesFromStorage = async () => {
+    try {
+      const savedImages = await AsyncStorage.getItem("savedImages");
+      if (savedImages !== null) {
+        setImageUrl(JSON.parse(savedImages));
+      }
+    } catch (error) {
+      console.error("Error loading images from storage:", error);
+    }
+  };
+
+  const saveImagesToStorage = async (newImages) => {
+    try {
+      await AsyncStorage.setItem("savedImages", JSON.stringify(newImages));
+    } catch (error) {
+      console.error("Error saving images to storage:", error);
+    }
+  };
+
   // 권한 요청을 위한 hooks
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
-
   const uploadImage = async () => {
     //권한 확인: 권한 없으면 물어보고, 승인하지 않으면 함수 종료
     if (!status?.granted) {
@@ -33,16 +60,8 @@ export default function ImagePickerComponent({ url }) {
       quality: 0.5, //1이 가장 높은 품질
       aspect: [4, 4], //이미지 비율 설정
     });
-    if (result.cancelled) {
-      return null; //업로드 취소한 경우
-    }
-
-    //이미지 업로드 결과 및 이미지 경로 업데이트
-    setImageUrl(result.assets[0].uri);
-    uploadImage(result.assets[0].uri);
-
-    const uploadImage = async (uri) => {
-      const endpoint = `${NRROK_ADDRESS}/api/login`;
+    const upload = async (uri) => {
+      const endpoint = `${NRROK_ADDRESS}/api/images/upload`;
       try {
         const formData = new FormData();
         formData.append("image", {
@@ -63,18 +82,32 @@ export default function ImagePickerComponent({ url }) {
         console.error("Upload error:", error);
       }
     };
+    if (!result.cancelled) {
+      //이미지 업로드 결과 및 이미지 경로 업데이트
+      const newImages = [result.assets[0].uri, ...imageUrl];
+
+      setImageUrl(newImages);
+      saveImagesToStorage(newImages);
+      upload(result.assets[0].uri);
+    }
   };
 
   return (
     <SafeAreaView>
-      <TouchableOpacity onPress={uploadImage} style={{ marginTop: 200 }}>
-        <Text>이미지 업로드하기</Text>
+      <TouchableOpacity onPress={uploadImage} style={styles.uploadBtn}>
+        <AntDesign name="plussquareo" size={30} color={COLORS.black} />
+        <Text style={styles.uploadBtnText}> 업로드</Text>
       </TouchableOpacity>
-      <View style={{ height: 400, borderWidth: 1 }}>
-        {imageUrl ? (
-          <Image source={{ uri: imageUrl }} style={styles.img} />
-        ) : (
-          <Image source={localImage} style={styles.img} />
+      <View style={styles.imagesWrapper}>
+        {imageUrl && (
+          <FlatList
+            data={imageUrl}
+            numColumns={3} // 3열 그리드
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <Image source={{ uri: item }} style={styles.image} />
+            )}
+          />
         )}
       </View>
     </SafeAreaView>
