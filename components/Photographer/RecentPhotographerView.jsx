@@ -10,20 +10,20 @@ function getRandomImageURL() {
   return `https://source.unsplash.com/500x500?random=${randomNumber}`;
 }
 
-export default function NearPhotographerView({ data }) {
-  const [randomItem, setRandomItem] = useState(null);
+export default function NearPhotographerView({ item }) {
+  // const [randomItem, setRandomItem] = useState(null);
 
-  useEffect(() => {
-    // Randomly select one item from the data array
-    const randomIndex = Math.floor(Math.random() * data.length);
-    const selectedRandomItem = data[randomIndex];
-    setRandomItem(selectedRandomItem);
-  }, [data]);
+  // useEffect(() => {
+  //   // Randomly select one item from the data array
+  //   const randomIndex = Math.floor(Math.random() * item.length);
+  //   const selectedRandomItem = item[randomIndex];
+  //   setRandomItem(selectedRandomItem);
+  // }, [item]);
 
-  if (!randomItem) {
-    // If no random item is selected yet, render nothing
-    return null;
-  }
+  // if (!randomItem) {
+  //   // If no random item is selected yet, render nothing
+  //   return null;
+  // }
 
   return (
     <TouchableOpacity style={styles.recentViewWrapper}>
@@ -36,7 +36,7 @@ export default function NearPhotographerView({ data }) {
         </View>
 
         <View style={styles.profileInfoWrapper}>
-          <Text>{randomItem.username}</Text>
+          <Text>{item.username}</Text>
           <View style={styles.profileInfo}>
             <View style={styles.profileInfoRow}>
               <Ionicons
@@ -50,7 +50,7 @@ export default function NearPhotographerView({ data }) {
             </View>
             <View style={styles.profileInfoRow}>
               <Ionicons name="location-outline" size={15} color={COLORS.gray} />
-              <Text>{randomItem.location}</Text>
+              <Text>{item.location}</Text>
             </View>
             <View style={styles.profileInfoRow}>
               <Ionicons name="cash-outline" size={15} color={COLORS.gray} />

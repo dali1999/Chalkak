@@ -21,7 +21,7 @@ export default function RecentPhotographer() {
             {error.message}
           </Text>
         ) : (
-          <RecentPhotographerView data={data} />
+          <RecentPhotographerView item={data} />
         )}
       </View>
     </View>

@@ -186,7 +186,7 @@ export default function Login({ navigation }) {
                     value={values.password}
                     onChangeText={handleChange("password")}
                     autoCapitalize="none"
-                    autoCorrect="false"
+                    antoCorrect="false"
                     style={{ flex: 1 }}
                   />
 

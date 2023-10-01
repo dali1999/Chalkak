@@ -11,6 +11,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 0,
+    borderWidth: 1,
+    borderColor: COLORS.gray2,
   },
   profileContainer: {
     justifyContent: "center",

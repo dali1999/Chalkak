@@ -17,6 +17,7 @@ import AppBar from "../components/AppBar/AppBar";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../hook/config";
 import RecentPhotographerView from "../components/Photographer/RecentPhotographerView";
+import NearPhotographerView from "../components/Photographer/NearPhotographerView";
 import useFetch from "../hook/useFetch";
 
 export default function Search() {
@@ -38,7 +39,7 @@ export default function Search() {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <AppBar title={"찰영 신청"} color={COLORS.gray} />
 
       <View style={styles.searchBar}>
@@ -67,24 +68,31 @@ export default function Search() {
         </View>
       </View>
 
-      {searchResults.length === 0 ? (
-        <View style={{ flex: 1, alignItems: "center" }}>
+      {searchResults.length === 0 || "" ? (
+        <View style={{ flex: 1, marginBottom: 60 }}>
           <FlatList
+            nestedScrollEnabled
             data={data}
             keyExtractor={(item) => item._id}
-            renderItem={({ item }) => <RecentPhotographerView data={item} />}
-            vertical
-            contentContainerStyle={{ rowGap: SIZES.medium }}
+            renderItem={({ item }) => <RecentPhotographerView item={item} />}
+            contentContainerStyle={{
+              marginHorizontal: 12,
+              rowGap: SIZES.medium,
+            }}
           />
-          {/* <RecentPhotographerView data={data}/> */}
         </View>
       ) : (
-        <FlatList
-          data={searchResults}
-          keyExtractor={(item) => item._id}
-          renderItem={({ item }) => <RecentPhotographerView data={item} />}
-          style={{ marginHorizontal: 12 }}
-        />
+        <View style={{ flex: 1, marginBottom: 60 }}>
+          <FlatList
+            data={searchResults}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => <RecentPhotographerView item={item} />}
+            contentContainerStyle={{
+              marginHorizontal: 12,
+              rowGap: SIZES.medium,
+            }}
+          />
+        </View>
       )}
     </SafeAreaView>
   );
