@@ -22,18 +22,18 @@ const styles = StyleSheet.create({
   },
   profileImgContainer: {
     borderRadius: 999,
-    width: 80,
-    height: 80,
+    // width: 90,
+    // height: 90,
     borderWidth: 1,
   },
   profileImg: {
     borderRadius: 999,
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     resizeMode: "cover",
   },
 
-  profileInfoWrapper: {},
+  profileInfoWrapper: { borderWidth: 2 },
   profileInfo: {
     marginTop: 10,
   },
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     gap: 10,
     position: "absolute",
     left: SIZES.width / 2 - 60,
-    top: SIZES.height / 2 - 50,
+    top: SIZES.height - 200,
     backgroundColor: COLORS.primary,
     borderRadius: SIZES.small,
     width: 120,

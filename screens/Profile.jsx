@@ -13,6 +13,7 @@ import { COLORS, SIZES } from "../constants";
 import styles from "./profile.style";
 import AppBar from "../components/AppBar/AppBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ImagePickerComponent from "../components/profile/ImagePickerComponent";
 
 export default function Profile({ navigation }) {
   const [userData, setUserData] = useState(null);
@@ -85,12 +86,17 @@ export default function Profile({ navigation }) {
           <View style={styles.container}>
             <View style={styles.profileWrapper}>
               <View style={styles.profileContainer}>
-                <View style={styles.profileImgContainer}>
+                <TouchableOpacity
+                  style={styles.profileImgContainer}
+                  onPress={() => {
+                    navigation.navigate("UploadImg");
+                  }}
+                >
                   <Image
                     source={require("../assets/갱수댕댕이.png")}
                     style={styles.profileImg}
                   />
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.profileInfoWrapper}>
                   <Text>{userData.username}</Text>
@@ -125,6 +131,14 @@ export default function Profile({ navigation }) {
                 </View>
               </View>
             </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("UploadImg");
+              }}
+            >
+              <Text>이미지 업로드</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.logout}

@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import { Login, Profile, SignUp } from "./screens";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ImagePickerComponent from "./components/profile/ImagePickerComponent";
 
 //Text 적용
 Text.defaultProps = Text.defaultProps || {};
@@ -80,6 +81,11 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UploadImg"
+          component={ImagePickerComponent}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
