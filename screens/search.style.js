@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../constants";
 const styles = StyleSheet.create({
-  searchContainer: {
+  searchBar: {
     flexDirection: "row",
     justifyContent: "center",
     alignContent: "center",

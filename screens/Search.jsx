@@ -41,7 +41,7 @@ export default function Search() {
     <SafeAreaView>
       <AppBar title={"찰영 신청"} color={COLORS.gray} />
 
-      <View style={styles.searchContainer}>
+      <View style={styles.searchBar}>
         <TouchableOpacity>
           <Ionicons
             name="camera-outline"
