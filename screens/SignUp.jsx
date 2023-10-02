@@ -10,11 +10,16 @@ import {
   Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+// import DropDownPicker from "react-native-dropdown-picker";
+import { MultiSelect } from "react-native-element-dropdown";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  AntDesign,
+} from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import styles from "./login.style";
 import Button from "../components/Button";
-// import SignUp from "./SignUp";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -39,6 +44,24 @@ const validationSchema = Yup.object().shape({
 export default function Login({ navigation }) {
   const [loader, setLoader] = useState(false);
   const [obsecureText, setObsecureText] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  //카테고리들
+  const categories = [
+    { label: "Horror", value: "Horror" },
+    { label: "Romance", value: "Romance" },
+    { label: "Action", value: "Action" },
+  ];
+
+  const renderDataItem = (item) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.selectedTextStyle}>{item.label}</Text>
+        <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
+      </View>
+    );
+  };
 
   const inValidForm = () => {
     Alert.alert("Invalid Form", "Please provide all required fields", [
@@ -54,14 +77,12 @@ export default function Login({ navigation }) {
   };
 
   //회원가입 시 반환
-  //맥 : 192.168.0.5
-  //윈도우 : 192.168.55.136
-  //ngrok : 7d54-175-117-199-226.ngrok-free.app
   const registerUser = async (values) => {
     setLoader(true);
     try {
       const endpoint = `${NRROK_ADDRESS}/api/register`;
       const data = values;
+      data.categories = selectedCategories;
 
       const response = await axios.post(endpoint, data);
       if (response.status === 201) {
@@ -89,6 +110,7 @@ export default function Login({ navigation }) {
             location: "",
             username: "",
             role: "user",
+            category: "",
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => registerUser(values)}
@@ -104,8 +126,8 @@ export default function Login({ navigation }) {
             setFieldTouched,
             setFieldValue,
           }) => (
-            <View>
-              {/* username ==========================================*/}
+            <ScrollView>
+              {/* username ==============================================*/}
               <View style={styles.wrapper}>
                 <Text style={styles.label}>Username</Text>
                 <View
@@ -173,7 +195,7 @@ export default function Login({ navigation }) {
                 )}
               </View>
 
-              {/* location ===========================================*/}
+              {/* location ==============================================*/}
               <View style={styles.wrapper}>
                 <Text style={styles.label}>Location</Text>
                 <View
@@ -207,7 +229,7 @@ export default function Login({ navigation }) {
                 )}
               </View>
 
-              {/* password================================================== */}
+              {/* password ===============================================*/}
               <View style={styles.wrapper}>
                 <Text style={styles.label}>Password</Text>
                 <View
@@ -253,7 +275,7 @@ export default function Login({ navigation }) {
                 )}
               </View>
 
-              {/* role Picker================================================== */}
+              {/* role Picker ============================================*/}
               <View style={styles.wrapper}>
                 <Text style={styles.label}>Role</Text>
                 <View
@@ -276,6 +298,49 @@ export default function Login({ navigation }) {
                 </View>
               </View>
 
+              {/* category ===============================================*/}
+              <View style={styles.wrapper}>
+                <Text style={styles.label}>Category</Text>
+                <View
+                  style={{
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderColor: COLORS.primary,
+                    padding: 2,
+                  }}
+                >
+                  <MultiSelect
+                    data={categories}
+                    labelField="label"
+                    valueField="value"
+                    placeholder="관심있는 카테고리"
+                    value={selectedCategories}
+                    min={0} // 최소 선택 항목 수
+                    max={2} // 최대 선택 항목 수
+                    onChange={(item) => {
+                      setSelectedCategories(item);
+                    }}
+                    renderItem={renderDataItem}
+                    renderSelectedItem={(item, unSelect) => (
+                      <TouchableOpacity
+                        onPress={() => unSelect && unSelect(item)}
+                      >
+                        <View style={styles.selectedStyle}>
+                          <Text style={styles.textSelectedStyle}>
+                            {item.label}
+                          </Text>
+                          <AntDesign color="black" name="delete" size={17} />
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                  />
+                  {/* <Text>선택한 장르:</Text>
+                  {selectedCategories.map((categories) => (
+                    <Text key={categories.value}>{categories.label}</Text>
+                  ))} */}
+                </View>
+              </View>
+
               {/* 회원가입 버튼================================================== */}
               <Button
                 loader={loader}
@@ -283,7 +348,7 @@ export default function Login({ navigation }) {
                 onPress={isValid ? handleSubmit : inValidForm}
                 isValid={isValid}
               />
-            </View>
+            </ScrollView>
           )}
         </Formik>
       </View>
