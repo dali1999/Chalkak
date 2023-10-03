@@ -133,8 +133,9 @@ export default function Profile({ navigation }) {
               </View>
             </View>
 
+            <Text>{userData._id}</Text>
             {/* 이미지 업로드 ==========================================*/}
-              <ImagePickerComponent />
+            <ImagePickerComponent userId={userData._id} />
 
             <TouchableOpacity
               style={styles.logout}
