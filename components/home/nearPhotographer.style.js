@@ -6,8 +6,9 @@ const styles = StyleSheet.create({
     fontSize: SIZES.large,
   },
   nearWrapper: {
+    // borderWidth: 2,
     paddingVertical: 10,
-    justifyContent: "space-between",
+    justifyContent: "center",
     gap: 10,
     alignItems: "center",
     backgroundColor: COLORS.primary2,

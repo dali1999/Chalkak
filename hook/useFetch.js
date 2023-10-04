@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import axios from "axios";
-// const dotenv = require("dotenv");
+import { NRROK_ADDRESS } from "./config";
 
 export default function useFetch() {
   // dotenv.config();
@@ -12,9 +12,7 @@ export default function useFetch() {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `http://29c3-175-117-199-226.ngrok-free.app/api/users/`
-      );
+      const response = await axios.get(`${NRROK_ADDRESS}/api/users/`);
       setData(response.data);
       setIsLoading(false);
     } catch (error) {

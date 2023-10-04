@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SIZES } from "../../constants";
@@ -8,6 +8,16 @@ import useFetch from "../../hook/useFetch";
 
 export default function NearPhotographer() {
   const { data, isLoading, error } = useFetch();
+  const [shuffledData, setShuffledData] = useState([]);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      // Shuffle the data array randomly
+      const shuffled = data.slice().sort(() => 0.5 - Math.random());
+      setShuffledData(shuffled);
+    }
+  }, [data]);
+
   return (
     <View style={{ margin: SIZES.medium }}>
       <Text style={styles.title}>회원가입 한 유저들</Text>
@@ -21,7 +31,7 @@ export default function NearPhotographer() {
           </Text>
         ) : (
           <FlatList
-            data={data}
+            data={shuffledData.slice(0, 3)}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => <NearPhotographerView item={item} />}
             vertical

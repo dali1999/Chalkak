@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
 
   profileWrapper: {
     height: 150,
-    paddingVertical: 10,
     justifyContent: "center",
     alignItems: "center",
     margin: SIZES.medium,
@@ -22,25 +21,27 @@ const styles = StyleSheet.create({
   },
   profileImgContainer: {
     borderRadius: 999,
-    width: 80,
-    height: 80,
+    // width: 90,
+    // height: 90,
     borderWidth: 1,
   },
   profileImg: {
     borderRadius: 999,
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     resizeMode: "cover",
   },
-
-  profileInfoWrapper: {},
+  profileInfoWrapper: { borderWidth: 0 },
   profileInfo: {
     marginTop: 10,
   },
-
   profileInfoRow: {
     flexDirection: "row",
     gap: 10,
+  },
+
+  imagesWrapper: {
+    marginTop: 10,
   },
 
   logout: {
@@ -48,17 +49,17 @@ const styles = StyleSheet.create({
     gap: 10,
     position: "absolute",
     left: SIZES.width / 2 - 60,
-    bottom: 100,
+    top: SIZES.height - 200,
     backgroundColor: COLORS.primary,
     borderRadius: SIZES.small,
     width: 120,
-    height: 70,
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
   },
   logText: {
     position: "absolute",
-    top: 15,
+    // top: 15,
     color: COLORS.lightWhite,
     fontFamily: "bold",
     fontSize: SIZES.large,

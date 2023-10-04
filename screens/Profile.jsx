@@ -13,6 +13,7 @@ import { COLORS, SIZES } from "../constants";
 import styles from "./profile.style";
 import AppBar from "../components/AppBar/AppBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ImagePickerComponent from "../components/profile/ImagePickerComponent";
 
 export default function Profile({ navigation }) {
   const [userData, setUserData] = useState(null);
@@ -66,7 +67,7 @@ export default function Profile({ navigation }) {
 
   return (
     <SafeAreaView>
-      <AppBar title={"마이 페이지"} color={COLORS.gray} />
+      <AppBar title={"프로필"} color={COLORS.gray} />
 
       <View>
         {userLogin === false ? (
@@ -83,14 +84,20 @@ export default function Profile({ navigation }) {
           </View>
         ) : (
           <View style={styles.container}>
+            {/* 프로필 ================================================ */}
             <View style={styles.profileWrapper}>
               <View style={styles.profileContainer}>
-                <View style={styles.profileImgContainer}>
+                <TouchableOpacity
+                  style={styles.profileImgContainer}
+                  onPress={() => {
+                    navigation.navigate("UploadImg");
+                  }}
+                >
                   <Image
                     source={require("../assets/갱수댕댕이.png")}
                     style={styles.profileImg}
                   />
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.profileInfoWrapper}>
                   <Text>{userData.username}</Text>
@@ -125,6 +132,10 @@ export default function Profile({ navigation }) {
                 </View>
               </View>
             </View>
+
+            <Text>{userData._id}</Text>
+            {/* 이미지 업로드 ==========================================*/}
+            <ImagePickerComponent userId={userData._id} />
 
             <TouchableOpacity
               style={styles.logout}

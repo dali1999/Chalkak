@@ -18,6 +18,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NRROK_ADDRESS } from "../hook/config";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -49,15 +50,13 @@ export default function Login({ navigation }) {
   //로그인 시 반환
   const login = async (values) => {
     setLoader(true);
+    setResponseData(null);
     try {
-      //맥 192.168.0.5
-      //윈도우 192.168.55.136
-      const endpoint = "https://29c3-175-117-199-226.ngrok-free.app/api/login";
+      const endpoint = `${NRROK_ADDRESS}/api/login`;
       const data = values;
 
       const response = await axios.post(endpoint, data);
       if (response.status === 200) {
-        setLoader(false);
         setResponseData(response.data);
 
         await AsyncStorage.setItem(
@@ -66,6 +65,7 @@ export default function Login({ navigation }) {
           JSON.stringify(responseData)
         );
         await AsyncStorage.setItem("id", JSON.stringify(responseData._id));
+        setLoader(false);
         navigation.replace("Bottom Navigation");
       } else {
         Alert.alert(

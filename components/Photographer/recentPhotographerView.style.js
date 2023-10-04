@@ -1,21 +1,24 @@
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../../constants";
 const styles = StyleSheet.create({
+  // recentWrapper: { paddingHorizontal: SIZES.small },
   recentViewWrapper: {
     backgroundColor: COLORS.offwhite,
-    width: "93%",
+    width: "100%",
     height: 120,
     borderRadius: SIZES.small,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     gap: 40,
+    borderWidth: 3,
+    borderColor: COLORS.primary2,
   },
   profileContainer: {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    gap: 15,
+    gap: 35,
   },
   profileImgContainer: {
     borderRadius: 999,
