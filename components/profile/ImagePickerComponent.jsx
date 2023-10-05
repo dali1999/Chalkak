@@ -8,9 +8,8 @@ import {
   SafeAreaView,
   FlatList,
 } from "react-native";
-import { Ionicons, Fontisto, AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import styles from "../../components/profile/imagePickerComponent.style";
-import localImage from "../../assets/갱수댕댕이.png";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../../hook/config";
 import { COLORS } from "../../constants";
@@ -22,6 +21,8 @@ export default function ImagePickerComponent({ userId }) {
   useEffect(() => {
     // 앱 시작 시 이미지 상태를 로드
     loadImagesFromStorage();
+    // 유저의 이미지 목록을 가져오기
+    // getUserImages();
   }, []);
 
   const loadImagesFromStorage = async () => {
@@ -29,9 +30,6 @@ export default function ImagePickerComponent({ userId }) {
       const userImages = await AsyncStorage.getItem("userImages");
       if (userImages !== null) {
         setImageUrl(JSON.parse(userImages));
-        // const images = JSON.parse(userImages);
-        // const filteredImages = images.filter((image) => image.user === userId);
-        // setImageUrl(filteredImages);
       }
     } catch (error) {
       console.error("Error loading images from storage:", error);
@@ -45,6 +43,22 @@ export default function ImagePickerComponent({ userId }) {
       console.error("Error saving images to storage:", error);
     }
   };
+
+  // // 현재 로그인 한 유저의 이미지 목록을 가져오기
+  // const getUserImages = async () => {
+  //   try {
+  //     const response = await axios.get(`${NRROK_ADDRESS}/api/images/${userId}`);
+  //     if (response.status === 200) {
+  //       // 이미지 목록을 클라이언트 상태에 설정
+  //       const images = response.data;
+  //       setImageUrl(images);
+  //       saveImagesToStorage(images);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error getting user images:", error);
+  //   }
+  // };
+
   //이미지 삭제
   const deleteImage = async (imageUri) => {
     try {
@@ -89,7 +103,7 @@ export default function ImagePickerComponent({ userId }) {
     });
     const upload = async (uri) => {
       const endpoint = `${NRROK_ADDRESS}/api/images/upload/${userId}`;
-      console.log(endpoint);
+      // console.log(endpoint + "upload");
       try {
         const formData = new FormData();
         formData.append("image", {
@@ -104,7 +118,7 @@ export default function ImagePickerComponent({ userId }) {
             "Content-Type": "multipart/form-data",
           },
         });
-
+        
         // 서버 응답을 확인하고 처리
         console.log("Upload response:", response.data);
       } catch (error) {
