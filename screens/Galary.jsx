@@ -41,7 +41,7 @@ export default function Galary() {
   return (
     <SafeAreaView>
       <AppBar title={"갤러리"} color={COLORS.gray} />
-      <Text>DB에 있는 이미지들</Text>
+      <Text>DB에 있는 이미지 모음</Text>
       <FlatList
         data={images}
         numColumns={3}
