@@ -15,15 +15,24 @@ import { COLORS, SIZES } from "../constants";
 import AppBar from "../components/AppBar/AppBar";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../hook/config";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Galary() {
   const [images, setImages] = useState([]);
   const endpoint = `${NRROK_ADDRESS}/api/images`;
 
-  useEffect(() => {
-    // MongoDB에서 이미지 가져오기
-    fetchImagesFromMongoDB();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      // 화면이 focus될 때 실행되는 코드
+      fetchImagesFromMongoDB();
+    }, [])
+  );
+
+  // useEffect(() => {
+  //   // MongoDB에서 이미지 가져오기
+  //   fetchImagesFromMongoDB();
+  // }, []);
+
 
   const fetchImagesFromMongoDB = async () => {
     try {
@@ -41,6 +50,13 @@ export default function Galary() {
   return (
     <SafeAreaView>
       <AppBar title={"갤러리"} color={COLORS.gray} />
+      <TouchableOpacity
+        style={styles.searchBar}
+        onPress={() => navigation.navigate("Search")}
+      >
+        <Ionicons name="search" size={24} color={COLORS.primary} />
+        <Text style={styles.searchBarText}>당신의 작가를 찾아보세요</Text>
+      </TouchableOpacity>
       <Text>DB에 있는 이미지들</Text>
       <FlatList
         data={images}
