@@ -33,7 +33,6 @@ export default function Galary() {
   //   fetchImagesFromMongoDB();
   // }, []);
 
-
   const fetchImagesFromMongoDB = async () => {
     try {
       const response = await axios.get(`${NRROK_ADDRESS}/api/images`);
@@ -50,7 +49,7 @@ export default function Galary() {
   return (
     <SafeAreaView>
       <AppBar title={"갤러리"} color={COLORS.gray} />
-<<<<<<< HEAD
+
       <TouchableOpacity
         style={styles.searchBar}
         onPress={() => navigation.navigate("Search")}
@@ -59,9 +58,7 @@ export default function Galary() {
         <Text style={styles.searchBarText}>당신의 작가를 찾아보세요</Text>
       </TouchableOpacity>
       <Text>DB에 있는 이미지들</Text>
-=======
-      <Text>DB에 있는 이미지 모음</Text>
->>>>>>> cfffe7a2ca91dccd7e23691188df4d1d467fbe38
+
       <FlatList
         data={images}
         numColumns={3}
