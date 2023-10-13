@@ -9,6 +9,9 @@ import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import { Login, Profile, Search, SignUp } from "./screens";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ImagePickerComponent from "./components/profile/ImagePickerComponent";
+import BoardScreen from "./screens/BoardScreen";
+import PostWriteScreen from "./screens/PostWriteScreen";
+import PostDetailScreen from "./screens/PostDetailScreen";
 
 //Text 적용
 Text.defaultProps = Text.defaultProps || {};
@@ -92,6 +95,21 @@ export default function App() {
           name="Search"
           component={Search}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="BoardScreen"
+          component={BoardScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PostWrite"
+          component={PostWriteScreen}
+          options={{ headerShown: true, title: "게시글 작성" }}
+        />
+        <Stack.Screen
+          name="PostDetail"
+          component={PostDetailScreen}
+          options={{ headerShown: true, title: "게시글 상세" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
