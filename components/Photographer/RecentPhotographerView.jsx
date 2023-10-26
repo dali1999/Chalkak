@@ -3,6 +3,7 @@ import { TouchableOpacity, View, Text, Image } from "react-native";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import styles from "./recentPhotographerView.style";
 import { COLORS } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 
 function getRandomImageURL() {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -10,23 +11,21 @@ function getRandomImageURL() {
   return `https://source.unsplash.com/500x500?random=${randomNumber}`;
 }
 
-export default function NearPhotographerView({ item }) {
-  // const [randomItem, setRandomItem] = useState(null);
+export default function RecentPhotographerView({ item }) {
+  const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   // Randomly select one item from the data array
-  //   const randomIndex = Math.floor(Math.random() * item.length);
-  //   const selectedRandomItem = item[randomIndex];
-  //   setRandomItem(selectedRandomItem);
-  // }, [item]);
-
-  // if (!randomItem) {
-  //   // If no random item is selected yet, render nothing
-  //   return null;
-  // }
+  const handleChatClick = () => {
+    navigation.navigate("Chat", { photographer: item });
+    // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
+  };
 
   return (
-    <TouchableOpacity style={styles.recentViewWrapper}>
+    <TouchableOpacity
+      style={styles.recentViewWrapper}
+      onPress={() => {
+        handleChatClick();
+      }}
+    >
       <View style={styles.profileContainer}>
         <View style={styles.profileImgContainer}>
           <Image
