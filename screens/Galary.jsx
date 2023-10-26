@@ -16,10 +16,13 @@ import AppBar from "../components/AppBar/AppBar";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../hook/config";
 import { useFocusEffect } from "@react-navigation/native";
+import useFetch from "../hook/useFetch";
 
 export default function Galary() {
+  const { data } = useFetch();
+
   const [images, setImages] = useState([]);
-  const endpoint = `${NRROK_ADDRESS}/api/images`;
+  // const endpoint = `${NRROK_ADDRESS}/api/images`;
 
   useFocusEffect(
     React.useCallback(() => {
@@ -28,11 +31,6 @@ export default function Galary() {
     }, [])
   );
 
-  // useEffect(() => {
-  //   // MongoDB에서 이미지 가져오기
-  //   fetchImagesFromMongoDB();
-  // }, []);
-
   const fetchImagesFromMongoDB = async () => {
     try {
       const response = await axios.get(`${NRROK_ADDRESS}/api/images`);
@@ -40,7 +38,6 @@ export default function Galary() {
         // MongoDB에서 가져온 이미지 목록을 상태에 설정
         setImages(response.data);
       }
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching images from MongoDB:", error);
     }
@@ -64,10 +61,16 @@ export default function Galary() {
         numColumns={3}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <Image
-            source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
-            style={styles.image}
-          />
+          <TouchableOpacity
+            onPress={() => {
+              console.log(item.user);
+            }}
+          >
+            <Image
+              source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
+              style={styles.image}
+            />
+          </TouchableOpacity>
         )}
       />
     </SafeAreaView>

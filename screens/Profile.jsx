@@ -18,6 +18,7 @@ import ImagePickerComponent from "../components/profile/ImagePickerComponent";
 export default function Profile({ navigation }) {
   const [userData, setUserData] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
+  const [isPhotographer, setIsPhotographer] = useState(false);
 
   useEffect(() => {
     checkExistingUser();
@@ -64,7 +65,7 @@ export default function Profile({ navigation }) {
       },
     ]);
   };
-
+  
   return (
     <SafeAreaView>
       <AppBar title={"프로필"} color={COLORS.gray} />

@@ -118,14 +118,14 @@ export default function ImagePickerComponent({ userId }) {
             "Content-Type": "multipart/form-data",
           },
         });
-        
+
         // 서버 응답을 확인하고 처리
         console.log("Upload response:", response.data);
       } catch (error) {
         console.error("Upload error:", error);
       }
     };
-    if (!result.cancelled) {
+    if (!result.canceled) {
       //이미지 업로드 결과 및 이미지 경로 업데이트
       const newImages = [
         { uri: result.assets[0].uri, user: userId },

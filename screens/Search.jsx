@@ -17,7 +17,6 @@ import AppBar from "../components/AppBar/AppBar";
 import axios from "axios";
 import { NRROK_ADDRESS } from "../hook/config";
 import RecentPhotographerView from "../components/Photographer/RecentPhotographerView";
-import NearPhotographerView from "../components/Photographer/NearPhotographerView";
 import useFetch from "../hook/useFetch";
 
 export default function Search() {
