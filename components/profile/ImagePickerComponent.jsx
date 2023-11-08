@@ -44,21 +44,6 @@ export default function ImagePickerComponent({ userId }) {
     }
   };
 
-  // // 현재 로그인 한 유저의 이미지 목록을 가져오기
-  // const getUserImages = async () => {
-  //   try {
-  //     const response = await axios.get(`${NRROK_ADDRESS}/api/images/${userId}`);
-  //     if (response.status === 200) {
-  //       // 이미지 목록을 클라이언트 상태에 설정
-  //       const images = response.data;
-  //       setImageUrl(images);
-  //       saveImagesToStorage(images);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error getting user images:", error);
-  //   }
-  // };
-
   //이미지 삭제
   const deleteImage = async (imageUri) => {
     try {

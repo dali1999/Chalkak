@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { NRROK_ADDRESS } from "./config";
 
 export default function useFetch() {
-  // dotenv.config();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
