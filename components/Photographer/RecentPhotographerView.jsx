@@ -36,6 +36,7 @@ export default function RecentPhotographerView({ item }) {
 
         <View style={styles.profileInfoWrapper}>
           <Text>{item.username}</Text>
+          <Text>{item.role === "user" ? "유저" : "작가"}</Text>
           <View style={styles.profileInfo}>
             <View style={styles.profileInfoRow}>
               <Ionicons
@@ -44,8 +45,9 @@ export default function RecentPhotographerView({ item }) {
                 color={COLORS.gray}
               />
               <Text style={{ color: COLORS.primary }}>
-                일상 | 반려동물 | 풍경
+                {item.category?.slice(0, 4).join(" | ")}
               </Text>
+              {/* {console.log(typeof item.category)} */}
             </View>
             <View style={styles.profileInfoRow}>
               <Ionicons name="location-outline" size={15} color={COLORS.gray} />
@@ -57,11 +59,6 @@ export default function RecentPhotographerView({ item }) {
             </View>
           </View>
         </View>
-
-        {/* <Image
-          source={require("../../assets/fn1.jpg")}
-          style={styles.profileRightImg}
-        /> */}
       </View>
     </TouchableOpacity>
   );

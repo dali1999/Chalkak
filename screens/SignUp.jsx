@@ -3,14 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   ScrollView,
-  SafeAreaView,
   TextInput,
   Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-// import DropDownPicker from "react-native-dropdown-picker";
 import { MultiSelect } from "react-native-element-dropdown";
 import {
   Ionicons,
@@ -23,7 +20,6 @@ import Button from "../components/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NRROK_ADDRESS } from "../hook/config";
 
 const validationSchema = Yup.object().shape({
@@ -44,14 +40,14 @@ const validationSchema = Yup.object().shape({
 export default function Login({ navigation }) {
   const [loader, setLoader] = useState(false);
   const [obsecureText, setObsecureText] = useState(false);
-  // const [open, setOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   //카테고리들
   const categories = [
-    { label: "Horror", value: "Horror" },
-    { label: "Romance", value: "Romance" },
-    { label: "Action", value: "Action" },
+    { label: "프로필", value: "프로필" },
+    { label: "웨딩", value: "웨딩" },
+    { label: "졸업", value: "졸업" },
+    { label: "동물", value: "동물" },
   ];
 
   const renderDataItem = (item) => {
@@ -82,8 +78,10 @@ export default function Login({ navigation }) {
     try {
       const endpoint = `${NRROK_ADDRESS}/api/register`;
       const data = values;
-      data.categories = selectedCategories;
-
+      data.category = selectedCategories;
+      {
+        console.log(selectedCategories);
+      }
       const response = await axios.post(endpoint, data);
       if (response.status === 201) {
         navigation.replace("Login");
@@ -110,7 +108,7 @@ export default function Login({ navigation }) {
             location: "",
             username: "",
             role: "user",
-            category: "",
+            category: [],
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => registerUser(values)}
@@ -327,13 +325,13 @@ export default function Login({ navigation }) {
                       >
                         <View style={styles.selectedStyle}>
                           <Text style={styles.textSelectedStyle}>
-                            {item.label}
+                            {`${item.label}  `}
                           </Text>
-                          <AntDesign color="black" name="delete" size={17} />
                         </View>
                       </TouchableOpacity>
                     )}
                   />
+
                   {/* <Text>선택한 장르:</Text>
                   {selectedCategories.map((categories) => (
                     <Text key={categories.value}>{categories.label}</Text>
@@ -355,4 +353,3 @@ export default function Login({ navigation }) {
     </View>
   );
 }
-//../assets/갱수댕댕이.png

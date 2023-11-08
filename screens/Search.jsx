@@ -73,7 +73,10 @@ export default function Search() {
             nestedScrollEnabled
             data={data}
             keyExtractor={(item) => item._id}
-            renderItem={({ item }) => <RecentPhotographerView item={item} />}
+            renderItem={({ item }) => {
+              if (item.role === "photographer")
+                return <RecentPhotographerView item={item} />;
+            }}
             contentContainerStyle={{
               marginHorizontal: 12,
               rowGap: SIZES.medium,
@@ -85,7 +88,10 @@ export default function Search() {
           <FlatList
             data={searchResults}
             keyExtractor={(item) => item._id}
-            renderItem={({ item }) => <RecentPhotographerView item={item} />}
+            renderItem={({ item }) => {
+              if (item.role === "photographer")
+                return <RecentPhotographerView item={item} />;
+            }}
             contentContainerStyle={{
               marginHorizontal: 12,
               rowGap: SIZES.medium,
