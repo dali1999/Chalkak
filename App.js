@@ -96,11 +96,11 @@ export default function App() {
           component={Search}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Chat"
           component={ChatScreen}
           options={{ headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           name="BoardScreen"
           component={BoardScreen}

@@ -44,17 +44,21 @@ export default function Login({ navigation }) {
 
   //카테고리들
   const categories = [
+    { label: "졸업", value: "졸업" },
     { label: "프로필", value: "프로필" },
     { label: "웨딩", value: "웨딩" },
-    { label: "졸업", value: "졸업" },
+    { label: "여행", value: "여행" },
+    { label: "아기", value: "아기" },
+    { label: "가족", value: "가족" },
     { label: "동물", value: "동물" },
+    { label: "컨셉", value: "컨셉" },
   ];
 
   const renderDataItem = (item) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.selectedTextStyle}>{item.label}</Text>
         <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
+        <Text style={styles.selectedTextStyle}>{item.label}</Text>
       </View>
     );
   };

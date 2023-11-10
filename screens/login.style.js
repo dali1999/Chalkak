@@ -53,6 +53,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
   },
+  item: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 4,
+    paddingTop: 13,
+    paddingBottom: 13,
+  },
 });
 
 export default styles;

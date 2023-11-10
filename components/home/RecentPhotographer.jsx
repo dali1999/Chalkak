@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, ActivityIndicator, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SIZES } from "../../constants";
 import styles from "./recentPhotographer.style";
@@ -8,10 +8,19 @@ import useFetch from "../../hook/useFetch";
 
 export default function RecentPhotographer() {
   const { data, isLoading, error } = useFetch();
+  const [shuffledData, setShuffledData] = useState([]);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      // Shuffle the data array randomly
+      const shuffled = data.slice().sort(() => 0.5 - Math.random());
+      setShuffledData(shuffled);
+    }
+  }, [data]);
 
   return (
     <View style={{ margin: SIZES.medium }}>
-      <Text style={styles.title}>최근 본 작가</Text>
+      <Text style={styles.title}>추천 작가</Text>
       <View style={styles.recentWrapper}>
         {isLoading ? (
           <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary} />
@@ -21,7 +30,13 @@ export default function RecentPhotographer() {
             {error.message}
           </Text>
         ) : (
-          <RecentPhotographerView item={data} />
+          <FlatList
+            data={shuffledData.slice(0, 1)}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => <RecentPhotographerView item={item} />}
+            vertical
+            contentContainerStyle={{ rowGap: SIZES.medium }}
+          />
         )}
       </View>
     </View>

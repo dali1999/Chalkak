@@ -21,7 +21,6 @@ export default function NearPhotographerView({ item }) {
         </View>
         <Text style={styles.username}>{item.username} </Text>
         <Text style={{ color: COLORS.primary }}>
-          {" "}
           {item.role === "user" ? "유저" : "작가"}
         </Text>
         <Text style={styles.location}>{item.location}</Text>

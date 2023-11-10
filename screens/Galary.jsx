@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./galary.style";
 import { COLORS, SIZES } from "../constants";
 import AppBar from "../components/AppBar/AppBar";
@@ -19,6 +20,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import useFetch from "../hook/useFetch";
 
 export default function Galary() {
+  const navigation = useNavigation();
   const { data } = useFetch();
 
   const [images, setImages] = useState([]);
@@ -54,7 +56,6 @@ export default function Galary() {
         <Ionicons name="search" size={24} color={COLORS.primary} />
         <Text style={styles.searchBarText}>당신의 작가를 찾아보세요</Text>
       </TouchableOpacity>
-      <Text>DB에 있는 이미지들</Text>
 
       <FlatList
         data={images}

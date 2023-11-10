@@ -65,7 +65,7 @@ export default function Profile({ navigation }) {
       },
     ]);
   };
-  
+
   return (
     <SafeAreaView>
       <AppBar title={"프로필"} color={COLORS.gray} />
@@ -134,7 +134,6 @@ export default function Profile({ navigation }) {
               </View>
             </View>
 
-            <Text>{userData._id}</Text>
             {/* 이미지 업로드 ==========================================*/}
             <ImagePickerComponent userId={userData._id} />
 

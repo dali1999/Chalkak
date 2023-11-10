@@ -14,10 +14,10 @@ function getRandomImageURL() {
 export default function RecentPhotographerView({ item }) {
   const navigation = useNavigation();
 
-  const handleChatClick = () => {
-    navigation.navigate("Chat", { photographer: item });
-    // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
-  };
+  // const handleChatClick = () => {
+  //   navigation.navigate("Chat", { photographer: item });
+  //   // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
+  // };
 
   return (
     <TouchableOpacity
