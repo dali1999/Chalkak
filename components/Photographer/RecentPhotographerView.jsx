@@ -35,8 +35,12 @@ export default function RecentPhotographerView({ item }) {
         </View>
 
         <View style={styles.profileInfoWrapper}>
-          <Text>{item.username}</Text>
-          <Text>{item.role === "user" ? "유저" : "작가"}</Text>
+          <View style={styles.userNameRole}>
+            <Text style={styles.username}>{item.username}</Text>
+            <Text style={styles.userrole}>
+              {item.role === "user" ? "유저" : "작가"}
+            </Text>
+          </View>
           <View style={styles.profileInfo}>
             <View style={styles.profileInfoRow}>
               <Ionicons
@@ -45,7 +49,7 @@ export default function RecentPhotographerView({ item }) {
                 color={COLORS.gray}
               />
               <Text style={{ color: COLORS.primary }}>
-                {item.category?.slice(0, 4).join(" | ")}
+                {item.category?.slice(0, 5).join(" | ")}
               </Text>
               {/* {console.log(typeof item.category)} */}
             </View>

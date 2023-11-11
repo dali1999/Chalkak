@@ -54,10 +54,16 @@ export default function Login({ navigation }) {
     { label: "컨셉", value: "컨셉" },
   ];
 
+  // 카테고리 아이콘, 라벨
   const renderDataItem = (item) => {
     return (
       <View style={styles.item}>
-        <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
+        <AntDesign
+          style={styles.icon}
+          color="black"
+          name="checksquareo"
+          size={20}
+        />
         <Text style={styles.selectedTextStyle}>{item.label}</Text>
       </View>
     );
@@ -276,30 +282,6 @@ export default function Login({ navigation }) {
                   <Text style={styles.errorMessage}>{errors.password}</Text>
                 )}
               </View>
-
-              {/* role Picker ============================================*/}
-              <View style={styles.wrapper}>
-                <Text style={styles.label}>Role</Text>
-                <View
-                  style={{
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    borderColor: COLORS.primary,
-                    padding: 2,
-                  }}
-                >
-                  <Picker
-                    selectedValue={values.role}
-                    onValueChange={(itemValue) =>
-                      setFieldValue("role", itemValue)
-                    }
-                  >
-                    <Picker.Item label="일반 사용자" value="user" />
-                    <Picker.Item label="사진 작가" value="photographer" />
-                  </Picker>
-                </View>
-              </View>
-
               {/* category ===============================================*/}
               <View style={styles.wrapper}>
                 <Text style={styles.label}>Category</Text>
@@ -308,7 +290,7 @@ export default function Login({ navigation }) {
                     borderWidth: 1,
                     borderRadius: 10,
                     borderColor: COLORS.primary,
-                    padding: 2,
+                    padding: 10,
                   }}
                 >
                   <MultiSelect
@@ -340,6 +322,28 @@ export default function Login({ navigation }) {
                   {selectedCategories.map((categories) => (
                     <Text key={categories.value}>{categories.label}</Text>
                   ))} */}
+                </View>
+              </View>
+              {/* role Picker ============================================*/}
+              <View style={styles.wrapper}>
+                <Text style={styles.label}>Role</Text>
+                <View
+                  style={{
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderColor: COLORS.primary,
+                    padding: 2,
+                  }}
+                >
+                  <Picker
+                    selectedValue={values.role}
+                    onValueChange={(itemValue) =>
+                      setFieldValue("role", itemValue)
+                    }
+                  >
+                    <Picker.Item label="일반 사용자" value="user" />
+                    <Picker.Item label="사진 작가" value="photographer" />
+                  </Picker>
                 </View>
               </View>
 

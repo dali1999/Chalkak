@@ -56,10 +56,18 @@ const styles = StyleSheet.create({
   item: {
     display: "flex",
     flexDirection: "row",
-    gap: 4,
+    gap: 10,
     paddingTop: 13,
     paddingBottom: 13,
+    paddingLeft: 10,
   },
+  selectedTextStyle: {
+    fontSize: SIZES.medium,
+  },
+  textSelectedStyle: {
+    color: COLORS.primary,
+  },
+  
 });
 
 export default styles;

@@ -21,8 +21,8 @@ export default function Community() {
   ];
 
   const allBoards = [
-    { id: 1, name: "서울 촬영 게시판" },
-    { id: 2, name: "SNS촬영 게시판" },
+    { id: 5, name: "서울 촬영 게시판" },
+    { id: 6, name: "SNS촬영 게시판" },
     // ... other boards
   ];
 

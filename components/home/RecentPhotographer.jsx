@@ -4,19 +4,125 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SIZES } from "../../constants";
 import styles from "./recentPhotographer.style";
 import RecentPhotographerView from "../Photographer/RecentPhotographerView";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import useFetch from "../../hook/useFetch";
 
 export default function RecentPhotographer() {
+  const [userData, setUserData] = useState(null);
   const { data, isLoading, error } = useFetch();
   const [shuffledData, setShuffledData] = useState([]);
+  const [userCategories, setUserCategories] = useState([]);
 
   useEffect(() => {
+    checkExistingUser();
     if (data && data.length > 0) {
       // Shuffle the data array randomly
       const shuffled = data.slice().sort(() => 0.5 - Math.random());
       setShuffledData(shuffled);
+
+      // Extracting and organizing usernames and categories into an array of objects
+      const users = shuffled.map((item) => ({
+        username: item.username,
+        category: item.category,
+        role: item.role,
+      }));
+      setUserCategories(users);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (userCategories.length > 0 && userData?.category) {
+      const recommended = recommendPhotographers(
+        userData.category,
+        userCategories
+      );
+      const filteredPhotographers = recommended.filter(
+        (obj) => obj.username !== userData.username
+      );
+
+      // If user isn't logged in, show a random photographer
+      const listToDisplay =
+        filteredPhotographers.length > 0
+          ? [filteredPhotographers[0]]
+          : shuffledData.slice(0, 1);
+
+      setShuffledData(listToDisplay);
+      console.log("추천작가: ", filteredPhotographers[0]);
+      console.log("\n");
+    } else {
+      // User isn't logged in, display random photographers
+      setShuffledData(data.slice(0, 2));
+    }
+  }, [userCategories, userData, data]);
+
+  const checkExistingUser = async () => {
+    const id = await AsyncStorage.getItem("id");
+    const userId = `user${JSON.parse(id)}`;
+
+    try {
+      const currentUser = await AsyncStorage.getItem(userId);
+
+      if (currentUser !== null) {
+        const parsedData = JSON.parse(currentUser);
+        setUserData(parsedData);
+        // setUserLogin(true);
+      } else {
+        // userData.category = [{}];
+      }
+    } catch (error) {
+      console.log("Error retrieving the data:", error);
+    }
+  };
+
+  function recommendPhotographers(userPreferredCategories, photographers) {
+    console.log(
+      `${userData.username}유저의 선호 프로필 : [${userPreferredCategories}]`
+    );
+    console.log("\n");
+    const recommendedPhotographers = [];
+    // Iterate through all photographers
+    for (const photographer of photographers) {
+      let matchCount = 0;
+      // Compare the user's preferred categories with the photographer's categories
+      for (const category of userPreferredCategories) {
+        if (photographer.category.includes(category)) {
+          matchCount++;
+        }
+      }
+      // You can set a threshold (e.g., 1 or more matching categories) for recommendations
+      if (matchCount > 0) {
+        // Push photographer and the number of matches into recommendedPhotographers array
+        recommendedPhotographers.push({ photographer, matchCount });
+      }
+      console.log(
+        `${photographer.username} : [${photographer.category}] ${matchCount}개 일치`
+      );
+    }
+    console.log(`========================================================`);
+    // Sort the recommended photographers by the number of matching categories
+    recommendedPhotographers.sort((a, b) => b.matchCount - a.matchCount);
+    // Return the sorted recommended photographers
+    return recommendedPhotographers.map((entry) => entry.photographer);
+  }
+
+  // const userPreferredCategories = userData.category;
+  // const photographers = userCategories;
+  // const recommended = recommendPhotographers(
+  //   userPreferredCategories,
+  //   photographers
+  // );
+  // console.log(recommended);
+  // const filteredPhotographers = recommended.filter(
+  //   (obj) => obj.username !== userData.username
+  // );
+  // console.log(filteredPhotographers);
+  // console.log("Recommended:", recommended[0].username);
+  // console.log("Recommended:", recommended[1].username);
+  // console.log("Recommended:", recommended[2].username);
+  // console.log("Recommended:", recommended[3].username);
+  // console.log("Recommended:", recommended[4].username);
+  // console.log(userPreferredCategories);
+  // console.log(photographers);
 
   return (
     <View style={{ margin: SIZES.medium }}>
@@ -31,7 +137,9 @@ export default function RecentPhotographer() {
           </Text>
         ) : (
           <FlatList
-            data={shuffledData.slice(0, 1)}
+            data={shuffledData.filter(
+              (item) => item.username === shuffledData[0].username
+            )}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => <RecentPhotographerView item={item} />}
             vertical
