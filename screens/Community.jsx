@@ -14,7 +14,6 @@ export default function Community() {
     { id: 2, name: "정보" },
     { id: 3, name: "Q&A" },
     { id: 4, name: "홍보" },
-    { id: 5, name: "그 외" },
   ];
 
   const popularPosts = [
