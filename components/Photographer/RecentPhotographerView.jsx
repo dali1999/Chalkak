@@ -4,6 +4,7 @@ import { Ionicons, Fontisto } from "@expo/vector-icons";
 import styles from "./recentPhotographerView.style";
 import { COLORS } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import { OtherUserProfile } from "../../screens";
 
 function getRandomImageURL() {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -14,16 +15,16 @@ function getRandomImageURL() {
 export default function RecentPhotographerView({ item }) {
   const navigation = useNavigation();
 
-  // const handleChatClick = () => {
-  //   navigation.navigate("Chat", { photographer: item });
-  //   // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
-  // };
+  const handleViewClick = () => {
+    navigation.navigate("OtherUserProfile", { photographer: item });
+    // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
+  };
 
   return (
     <TouchableOpacity
       style={styles.recentViewWrapper}
       onPress={() => {
-        handleChatClick();
+        handleViewClick();
       }}
     >
       <View style={styles.profileContainer}>

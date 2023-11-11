@@ -6,7 +6,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
-import { Login, Profile, Search, SignUp, ChatScreen } from "./screens";
+import { Login, Profile, Search, SignUp, OtherUserProfile } from "./screens";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ImagePickerComponent from "./components/profile/ImagePickerComponent";
 import BoardScreen from "./screens/BoardScreen";
@@ -96,11 +96,11 @@ export default function App() {
           component={Search}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen
-          name="Chat"
-          component={ChatScreen}
+        <Stack.Screen
+          name="OtherUserProfile"
+          component={OtherUserProfile}
           options={{ headerShown: false }}
-        /> */}
+        />
         <Stack.Screen
           name="BoardScreen"
           component={BoardScreen}

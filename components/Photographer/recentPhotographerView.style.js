@@ -46,14 +46,13 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   username: {
-    fontSize: SIZES.large,
+    fontSize: SIZES.large - 2,
   },
   userrole: {
-    fontSize: SIZES.medium,
+    // borderWidth: 1,
+    marginTop: 2,
+    fontSize: SIZES.small + 2,
     height: 25,
-    position: "absolute",
-    left: 60,
-    top: 5,
     justifyContent: "center",
     alignItems: "center",
     color: COLORS.primary,

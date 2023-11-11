@@ -5,6 +5,15 @@ import Galary from "./Galary";
 import Profile from "./Profile";
 import Login from "./Login";
 import SignUp from "./SignUp";
-// import ChatScreen from "./ChatScreen";
+import OtherUserProfile from "./OtherUserProfile";
 
-export { Home, Search, Profile, Community, Galary, Login, SignUp };
+export {
+  Home,
+  Search,
+  Profile,
+  Community,
+  Galary,
+  Login,
+  SignUp,
+  OtherUserProfile,
+};

@@ -21,11 +21,13 @@ export default function RecentPhotographer() {
       setShuffledData(shuffled);
 
       // Extracting and organizing usernames and categories into an array of objects
-      const users = shuffled.map((item) => ({
-        username: item.username,
-        category: item.category,
-        role: item.role,
-      }));
+      const users = shuffled
+        .filter((user) => user.role === "photographer")
+        .map((item) => ({
+          username: item.username,
+          category: item.category,
+          role: item.role,
+        }));
       setUserCategories(users);
     }
   }, [data]);
@@ -43,15 +45,16 @@ export default function RecentPhotographer() {
       // If user isn't logged in, show a random photographer
       const listToDisplay =
         filteredPhotographers.length > 0
-          ? [filteredPhotographers[0]]
-          : shuffledData.slice(0, 1);
+          ? filteredPhotographers.slice(0, 2)
+          : shuffledData.slice(0, 2);
 
       setShuffledData(listToDisplay);
-      console.log("추천작가: ", filteredPhotographers[0]);
+      console.log("추천작가: ", listToDisplay);
       console.log("\n");
     } else {
       // User isn't logged in, display random photographers
-      setShuffledData(data.slice(0, 2));
+      const shuffled = data.slice().sort(() => 0.5 - Math.random());
+      setShuffledData(shuffled.filter((user) => user.role === "photographer"));
     }
   }, [userCategories, userData, data]);
 
@@ -105,25 +108,6 @@ export default function RecentPhotographer() {
     return recommendedPhotographers.map((entry) => entry.photographer);
   }
 
-  // const userPreferredCategories = userData.category;
-  // const photographers = userCategories;
-  // const recommended = recommendPhotographers(
-  //   userPreferredCategories,
-  //   photographers
-  // );
-  // console.log(recommended);
-  // const filteredPhotographers = recommended.filter(
-  //   (obj) => obj.username !== userData.username
-  // );
-  // console.log(filteredPhotographers);
-  // console.log("Recommended:", recommended[0].username);
-  // console.log("Recommended:", recommended[1].username);
-  // console.log("Recommended:", recommended[2].username);
-  // console.log("Recommended:", recommended[3].username);
-  // console.log("Recommended:", recommended[4].username);
-  // console.log(userPreferredCategories);
-  // console.log(photographers);
-
   return (
     <View style={{ margin: SIZES.medium }}>
       <Text style={styles.title}>추천 작가</Text>
@@ -137,9 +121,7 @@ export default function RecentPhotographer() {
           </Text>
         ) : (
           <FlatList
-            data={shuffledData.filter(
-              (item) => item.username === shuffledData[0].username
-            )}
+            data={shuffledData}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => <RecentPhotographerView item={item} />}
             vertical
@@ -149,4 +131,4 @@ export default function RecentPhotographer() {
       </View>
     </View>
   );
-}
+} //

@@ -12,7 +12,7 @@ export default function Button({ title, onPress, isValid, loader }) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.btn(isValid === false ? COLORS.gray : COLORS.primary)}
+      style={styles.btn(isValid === false ? COLORS.primary2 : COLORS.primary)}
     >
       {loader === false ? (
         <Text style={styles.btnTxt}>{title}</Text>
@@ -36,5 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 12,
+    marginBottom: 0,
   }),
 });

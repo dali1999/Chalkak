@@ -31,7 +31,7 @@ export default function NearPhotographer() {
           </Text>
         ) : (
           <FlatList
-            data={shuffledData.slice(0, 3)}
+            data={shuffledData.slice(0, 4)}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => <NearPhotographerView item={item} />}
             vertical
