@@ -10,13 +10,12 @@ const submitPost = async (postData) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // 인증이 필요하다면 'Authorization' 헤더에 토큰을 추가하세요.
         },
         body: JSON.stringify(postData),
       }
     );
     if (!response.ok) throw new Error("Network response was not ok.");
-    // 게시글 목록을 새로고침 해야 할 수도 있습니다. fetchPosts() 함수가 새로고침을 담당합니다.
+    // 게시글 목록을 새로고침. fetchPosts() 함수가 새로고침을 담당.
     fetchPosts();
   } catch (error) {
     console.error("Error:", error);
