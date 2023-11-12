@@ -4,6 +4,7 @@ import { Ionicons, Fontisto } from "@expo/vector-icons";
 import styles from "./recentPhotographerView.style";
 import { COLORS } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import { OtherUserProfile } from "../../screens";
 
 function getRandomImageURL() {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -14,16 +15,16 @@ function getRandomImageURL() {
 export default function RecentPhotographerView({ item }) {
   const navigation = useNavigation();
 
-  // const handleChatClick = () => {
-  //   navigation.navigate("Chat", { photographer: item });
-  //   // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
-  // };
+  const handleViewClick = () => {
+    navigation.navigate("OtherUserProfile", { photographer: item });
+    // navigation.navigate("Chat", { photographer: item }); // Pass necessary data
+  };
 
   return (
     <TouchableOpacity
       style={styles.recentViewWrapper}
       onPress={() => {
-        handleChatClick();
+        handleViewClick();
       }}
     >
       <View style={styles.profileContainer}>
@@ -35,8 +36,12 @@ export default function RecentPhotographerView({ item }) {
         </View>
 
         <View style={styles.profileInfoWrapper}>
-          <Text>{item.username}</Text>
-          <Text>{item.role === "user" ? "유저" : "작가"}</Text>
+          <View style={styles.userNameRole}>
+            <Text style={styles.username}>{item.username}</Text>
+            <Text style={styles.userrole}>
+              {item.role === "user" ? "유저" : "작가"}
+            </Text>
+          </View>
           <View style={styles.profileInfo}>
             <View style={styles.profileInfoRow}>
               <Ionicons
@@ -45,7 +50,7 @@ export default function RecentPhotographerView({ item }) {
                 color={COLORS.gray}
               />
               <Text style={{ color: COLORS.primary }}>
-                {item.category?.slice(0, 4).join(" | ")}
+                {item.category?.slice(0, 5).join(" | ")}
               </Text>
               {/* {console.log(typeof item.category)} */}
             </View>

@@ -10,6 +10,8 @@ function getRandomImageURL() {
 }
 
 export default function NearPhotographerView({ item }) {
+  // console.log(`${item.username}: ${item.category}`);
+
   return (
     <TouchableOpacity style={styles.nearViewWrapper}>
       <View style={styles.profileContainer}>

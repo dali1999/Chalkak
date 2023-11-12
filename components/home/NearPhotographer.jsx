@@ -20,7 +20,7 @@ export default function NearPhotographer() {
 
   return (
     <View style={{ margin: SIZES.medium }}>
-      <Text style={styles.title}>최근에 가입 유저들</Text>
+      <Text style={styles.title}>최근 가입 유저</Text>
       <View style={styles.nearWrapper}>
         {isLoading ? (
           <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary} />
@@ -31,7 +31,7 @@ export default function NearPhotographer() {
           </Text>
         ) : (
           <FlatList
-            data={shuffledData.slice(0, 3)}
+            data={shuffledData.slice(0, 7)}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => <NearPhotographerView item={item} />}
             vertical

@@ -152,7 +152,15 @@ export default function Community() {
     }
   };
 
+<<<<<<< HEAD
   // 인기 게시글 목록과 관련된 상태 및 로직이 필요한 경우 추가
+=======
+  const allBoards = [
+    { id: 5, name: "서울 촬영 게시판" },
+    { id: 6, name: "SNS촬영 게시판" },
+    // ... other boards
+  ];
+>>>>>>> upstream/main
 
   return (
     <SafeAreaView style={styles.container}>

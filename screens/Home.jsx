@@ -26,7 +26,7 @@ export default function Home() {
           <Text style={styles.searchBarText}>당신의 작가를 찾아보세요</Text>
         </TouchableOpacity>
 
-        <Category />
+        {/* <Category /> */}
         <NearPhotographer />
         <RecentPhotographer />
       </ScrollView>

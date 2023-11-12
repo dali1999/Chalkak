@@ -14,16 +14,35 @@ import axios from "axios";
 import { NRROK_ADDRESS } from "../../hook/config";
 import { COLORS } from "../../constants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function ImagePickerComponent({ userId }) {
   const [imageUrl, setImageUrl] = useState([]);
+  const [userImages, setUserImages] = useState([]);
 
+  const fetchUserImage = async (userId) => {
+    try {
+      const response = await fetch(`${NRROK_ADDRESS}/api/images/${userId}`);
+      const data = await response.json();
+      // console.log(data);
+      setUserImages(data);
+    } catch (error) {
+      console.error("Error fetching user images:", error);
+    }
+  };
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("이미지 아이디", userId);
+      fetchUserImage(userId);
+    }, [userId])
+  );
   useEffect(() => {
-    // 앱 시작 시 이미지 상태를 로드
-    loadImagesFromStorage();
-    // 유저의 이미지 목록을 가져오기
-    // getUserImages();
-  }, []);
+    // loadImagesFromStorage();
+    console.log("이미지 아이디", userId);
+    if (userId) {
+      fetchUserImage(userId);
+    }
+  }, [userId]);
 
   const loadImagesFromStorage = async () => {
     try {
@@ -130,18 +149,19 @@ export default function ImagePickerComponent({ userId }) {
         <Text style={styles.uploadBtnText}> 업로드</Text>
       </TouchableOpacity>
       <View style={styles.imagesWrapper}>
-        {imageUrl && (
-          <FlatList
-            data={imageUrl.filter((item) => item.user === userId)}
-            numColumns={3} // 3열 그리드
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => deleteImage(item.uri)}>
-                <Image source={{ uri: item.uri }} style={styles.image} />
-              </TouchableOpacity>
-            )}
-          />
-        )}
+        <FlatList
+          data={userImages}
+          numColumns={3} // 3열 그리드
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => deleteImage(item.uri)}>
+              <Image
+                source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </SafeAreaView>
   );

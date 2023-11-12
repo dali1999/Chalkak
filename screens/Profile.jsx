@@ -110,7 +110,7 @@ export default function Profile({ navigation }) {
                         color={COLORS.gray}
                       />
                       <Text style={{ color: COLORS.primary }}>
-                        일상 | 반려동물 | 풍경
+                        {userData.category?.slice(0, 5).join(" | ")}
                       </Text>
                     </View>
                     <View style={styles.profileInfoRow}>

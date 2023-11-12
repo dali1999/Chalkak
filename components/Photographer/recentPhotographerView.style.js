@@ -33,20 +33,29 @@ const styles = StyleSheet.create({
 
   profileInfoWrapper: {},
   profileInfo: {
-    marginTop: 10,
+    marginTop: 5,
   },
 
   profileInfoRow: {
     flexDirection: "row",
     gap: 10,
   },
-
-  //   profileRightImg: {
-  //     borderBottomRightRadius: SIZES.small,
-  //     borderTopRightRadius: SIZES.small,
-  //     width: 101,
-  //     height: 120,
-  //     resizeMode: "cover",
-  //   },
+  userNameRole: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 7,
+  },
+  username: {
+    fontSize: SIZES.large - 2,
+  },
+  userrole: {
+    // borderWidth: 1,
+    marginTop: 2,
+    fontSize: SIZES.small + 2,
+    height: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    color: COLORS.primary,
+  },
 });
 export default styles;

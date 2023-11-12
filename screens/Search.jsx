@@ -54,7 +54,7 @@ export default function Search() {
             style={styles.searchInput}
             value={searchKey}
             onChangeText={setSearchKey}
-            placeholder="What are you looking for?"
+            placeholder="작가 이름, 카테고리(가족, 프로필, 졸업), 장소 등으로 검색하세요."
           />
         </View>
         <View>

@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   profileImgContainer: {
     borderRadius: 999,
     borderWidth: 1,
+    marginLeft: 20,
   },
   profileImg: {
     borderRadius: 999,
@@ -32,15 +33,17 @@ const styles = StyleSheet.create({
   },
   username: {
     // borderWidth: 1,
-    width: 80,
-    fontSize: SIZES.large,
-    fontFamily: "bold",
+    width: 120,
+    fontSize: 20,
+    bottom: 3,
+    marginRight: 3,
+    // fontFamily: "medium",
     textAlign: "right",
   },
   location: {
     // borderWidth: 1,
-    fontSize: SIZES.medium,
-    width: 60,
+    fontSize: SIZES.small + 1,
+    width: 80,
     alignItems: "center",
     justifyContent: "center",
     textAlign: "left",

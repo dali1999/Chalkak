@@ -1,19 +1,9 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  SafeAreaView,
-  TextInput,
-  Alert,
-} from "react-native";
+import { View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { COLORS, SIZES } from "../constants";
+import { COLORS } from "../constants";
 import styles from "./login.style";
 import Button from "../components/Button";
-// import SignUp from "./SignUp";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -213,7 +203,15 @@ export default function Login({ navigation }) {
                 onPress={isValid ? handleSubmit : inValidForm}
                 isValid={isValid}
               />
-
+              <Button
+                loader={loader}
+                title={"회 원 가 입"}
+                onPress={() => {
+                  navigation.navigate("SignUp");
+                }}
+                isValid={1}
+              />
+              {/* 
               <Text
                 style={styles.registration}
                 onPress={() => {
@@ -221,7 +219,7 @@ export default function Login({ navigation }) {
                 }}
               >
                 Register
-              </Text>
+              </Text> */}
             </View>
           )}
         </Formik>
