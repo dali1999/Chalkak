@@ -32,13 +32,12 @@ export default function ImagePickerComponent({ userId }) {
   };
   useFocusEffect(
     React.useCallback(() => {
-      console.log("이미지 아이디", userId);
+      console.log("유저 아이디", userId);
       fetchUserImage(userId);
     }, [userId])
   );
   useEffect(() => {
-    // loadImagesFromStorage();
-    console.log("이미지 아이디", userId);
+    console.log("유저 아이디", userId);
     if (userId) {
       fetchUserImage(userId);
     }
@@ -154,12 +153,10 @@ export default function ImagePickerComponent({ userId }) {
           numColumns={3} // 3열 그리드
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => deleteImage(item.uri)}>
-              <Image
-                source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
-                style={styles.image}
-              />
-            </TouchableOpacity>
+            <Image
+              source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
+              style={styles.image}
+            />
           )}
         />
       </View>

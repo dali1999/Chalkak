@@ -101,7 +101,7 @@ export default function Profile({ navigation }) {
                 </TouchableOpacity>
 
                 <View style={styles.profileInfoWrapper}>
-                  <Text>{userData.username}</Text>
+                  <Text style={{ fontSize: 24 }}>{userData.username}</Text>
                   <View style={styles.profileInfo}>
                     <View style={styles.profileInfoRow}>
                       <Ionicons

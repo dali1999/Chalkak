@@ -46,7 +46,7 @@ export default function OtherUserProfile({ route }) {
               <View style={styles.profileInfoWrapper}>
                 <View>
                   {userData && userData.username ? (
-                    <Text>{userData.username}</Text>
+                    <Text style={{ fontSize: 24 }}>{userData.username}</Text>
                   ) : (
                     <Text>Loading...</Text>
                   )}
@@ -97,7 +97,15 @@ export default function OtherUserProfile({ route }) {
 
           {/* 이미지 업로드 ==========================================*/}
           <ImagePickerComponent userId={userData?._id} />
-          {console.log("클릭된 아이디: ", userData?.username, userData?._id)}
+          <View
+            style={{
+              width: 170,
+              height: 60,
+              backgroundColor: COLORS.offwhite,
+              position: "absolute",
+              top: 170,
+            }}
+          ></View>
         </View>
       </View>
     </SafeAreaView>

@@ -27,8 +27,8 @@ export default function Home() {
         </TouchableOpacity>
 
         {/* <Category /> */}
-        <NearPhotographer />
         <RecentPhotographer />
+        <NearPhotographer />
       </ScrollView>
     </SafeAreaView>
   );

@@ -17,16 +17,18 @@ export default function RecentPhotographer() {
     checkExistingUser();
     if (data && data.length > 0) {
       // Shuffle the data array randomly
-      const shuffled = data.slice().sort(() => 0.5 - Math.random());
-      setShuffledData(shuffled);
+      // const shuffled = data.slice().sort(() => 0.5 - Math.random());
+      // setShuffledData(data);
 
       // Extracting and organizing usernames and categories into an array of objects
-      const users = shuffled
+      const users = data
         .filter((user) => user.role === "photographer")
         .map((item) => ({
           username: item.username,
           category: item.category,
           role: item.role,
+          location: item.location,
+          id: item._id,
         }));
       setUserCategories(users);
     }
@@ -43,17 +45,14 @@ export default function RecentPhotographer() {
       );
 
       // If user isn't logged in, show a random photographer
-      const listToDisplay =
-        filteredPhotographers.length > 0
-          ? filteredPhotographers.slice(0, 2)
-          : shuffledData.slice(0, 2);
+      const listToDisplay = filteredPhotographers.slice(0, 3);
 
       setShuffledData(listToDisplay);
       console.log("추천작가: ", listToDisplay);
       console.log("\n");
     } else {
       // User isn't logged in, display random photographers
-      const shuffled = data.slice().sort(() => 0.5 - Math.random());
+      const shuffled = data.slice(0, 6).sort(() => 0.5 - Math.random());
       setShuffledData(shuffled.filter((user) => user.role === "photographer"));
     }
   }, [userCategories, userData, data]);
@@ -79,11 +78,10 @@ export default function RecentPhotographer() {
 
   function recommendPhotographers(userPreferredCategories, photographers) {
     console.log(
-      `${userData.username}유저의 선호 프로필 : [${userPreferredCategories}]`
+      `${userData.username}, ${userData._id}유저의 선호 프로필 : [${userPreferredCategories}]`
     );
     console.log("\n");
     const recommendedPhotographers = [];
-    // Iterate through all photographers
     for (const photographer of photographers) {
       let matchCount = 0;
       // Compare the user's preferred categories with the photographer's categories
@@ -92,9 +90,7 @@ export default function RecentPhotographer() {
           matchCount++;
         }
       }
-      // You can set a threshold (e.g., 1 or more matching categories) for recommendations
       if (matchCount > 0) {
-        // Push photographer and the number of matches into recommendedPhotographers array
         recommendedPhotographers.push({ photographer, matchCount });
       }
       console.log(
@@ -102,9 +98,7 @@ export default function RecentPhotographer() {
       );
     }
     console.log(`========================================================`);
-    // Sort the recommended photographers by the number of matching categories
     recommendedPhotographers.sort((a, b) => b.matchCount - a.matchCount);
-    // Return the sorted recommended photographers
     return recommendedPhotographers.map((entry) => entry.photographer);
   }
 
