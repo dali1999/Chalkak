@@ -6,7 +6,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  StyleSheet,
+  Dimensions,
 } from "react-native";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -56,24 +56,25 @@ export default function Galary() {
         <Ionicons name="search" size={24} color={COLORS.primary} />
         <Text style={styles.searchBarText}>당신의 작가를 찾아보세요</Text>
       </TouchableOpacity>
-
-      <FlatList
-        data={images}
-        numColumns={3}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => {
-              console.log(item.user);
-            }}
-          >
-            <Image
-              source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
-              style={styles.image}
-            />
-          </TouchableOpacity>
-        )}
-      />
+      <ScrollView style={{ height: "82%" }}>
+        <FlatList
+          data={images}
+          numColumns={3}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => {
+                console.log(item.user);
+              }}
+            >
+              <Image
+                source={{ uri: `${NRROK_ADDRESS}/img/${item.name}` }}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          )}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
